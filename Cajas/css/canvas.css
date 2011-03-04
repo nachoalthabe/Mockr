@@ -1,0 +1,74 @@
+@import "jquery/ui/custom.css";
+/*Canvas Section*/
+#cajas{
+    width: 806px;
+    height: 604px;
+}
+#themes{
+    display: none;
+}
+#canvas{
+    width: 600px;
+    height: 600px;
+    border: 2px solid #000;
+    border-right: none;
+    display: inline-block;
+    float: left;
+    overflow: auto;
+}
+#canvas .box{
+    border: 1px solid #000;
+}
+.box{
+    position: absolute;
+}
+
+/*Menu Section*/
+#menu{
+    height: 600px;
+    width: 200px;
+    border: 2px solid #000;
+    display: inline-block;
+    float: right;
+}
+#infoOfBox{
+    text-align: center;
+    margin: 5px 2px;
+    border-bottom: 2px groove #000;
+}
+#boxId{
+    font: bold 18px monospace;
+}
+#boxType{
+    font: normal 15px monospace;
+}
+#findTag{
+    width: 180px;
+    margin-left: 10px;
+}
+.ui-autocomplete{
+    font-size: 0.8em;
+}
+.tag{
+    background-color: #ccc;
+    display: inline-block;
+    padding-left: 10px;
+    -moz-border-radius: 5px 10px;
+    border-radius: 5px 10px;
+    margin: 5px;
+}
+.removeTag{
+    float: right;
+    font-weight: bold;
+    display: inline-block;
+    background-color: #888;
+    padding: 0px 3px;
+    -moz-border-radius: 0px 10px 5px 0px;
+    border-radius: 0px 10px 5px 0px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+#listOfTags{
+    margin: 5px;
+}
