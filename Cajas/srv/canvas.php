@@ -25,7 +25,7 @@ switch ($_GET['opt']) {
 function getXML() {
     $file = validGetParameter('file');
     include '../inc/xml2json.php';
-    return xml2json::transformXmlStringToJson('../'.$file);
+    return file_get_contents('../'.$file);
 }
 
 echo $response;

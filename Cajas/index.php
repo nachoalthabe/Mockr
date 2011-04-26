@@ -15,10 +15,12 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/index.css" type="text/css" media="all" />
     </head>
     <body>
-        <h1>Ingrese su XML</h1>
-        <input type="file" id="xml" />
-        <form id="gotoCanvas" method="post" action="canvas.php">
-            <input type="text" name="fileToEdit" id="fileName" />
-        </form>
+        <div id="body">
+            <h1>Ingrese su XML</h1>
+            <input type="file" id="xml" />
+            <form id="gotoCanvas" method="post" action="canvas.php">
+                <input type="text" name="fileToEdit" id="fileName" />
+            </form>
+        </div>
     </body>
 </html>

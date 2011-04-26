@@ -1,14 +1,15 @@
 @import "jquery/ui/custom.css";
 /*Canvas Section*/
 #cajas{
-    width: 806px;
+    width: 1006px;
     height: 604px;
+    margin: auto;
 }
 #themes{
     display: none;
 }
 #canvas{
-    width: 600px;
+    width: 800px;
     height: 600px;
     border: 2px solid #000;
     border-right: none;
@@ -18,11 +19,11 @@
 }
 #canvas .box{
     border: 1px solid #000;
-}
-.box{
     position: absolute;
 }
-
+#canvas .active{
+    border: 1px solid red;
+}
 /*Menu Section*/
 #menu{
     height: 600px;

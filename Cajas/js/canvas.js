@@ -1,12 +1,10 @@
 //Canvas Section
-var canvas,boxes,actBox,prevBox,file;
+var canvas,boxes,file;
 
 $(document).ready(function(){
-    boxes = $(".box");
     canvas = $("#canvas");
     actBox = canvas.filter('div:first-child');
     prevBox = null;
-    addLive();
     if(file != null){
         retriveFile(file);
     }
@@ -15,7 +13,7 @@ $(document).ready(function(){
 function retriveFile(file){
     $.ajax({
         url: '/srv/canvas.php',
-        dataType: 'json',
+        dataType: 'xml',
         data: {
             'opt'   :   1,
             'file'  :   file
@@ -28,11 +26,12 @@ function retriveFile(file){
 var mockup = new UI();
 
 function loadData(data){
-    xml = data;
-    Parser(xml['mockups']['ui'],mockup);
-    console.log('LoadData: ',mockup);
+    data = $(data).children().children('ui');
+    Parser(data,mockup);
     var drawer = new Drawer(mockup,$('#canvas'));
     drawer.draw();
+    boxes = $(".box");
+    addLive();
 }
 
 function addLive(){
@@ -40,11 +39,9 @@ function addLive(){
 }
 
 function activeBox(){
-    prevBox = actBox;
-    actBox = $(this);
-    prevBox.css('border-color','#000');
-    actBox.css('border-color','#f00');
-    loadInMenu(actBox);
+    boxes.filter('.active').removeClass('active');
+    elem = $(this).addClass('active');
+    loadInMenu(elem.data('ws'));
 }
 
 //Menu Section
@@ -81,9 +78,9 @@ function removeThisTag(tag){
     $(tag).parent().remove();
 }
 
-function loadInMenu(box){
-    boxTitleSpan.text(box.attr('id'));
-    boxTypeSpan.text(box.attr('type'));
+function loadInMenu(component){
+    $('#boxId').text(component.getTag('id').getId());
+    $('#boxType').text(component.getClassName());
 }
 
 function clearInput(){

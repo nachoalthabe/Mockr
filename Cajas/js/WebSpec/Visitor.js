@@ -7,7 +7,6 @@ var Drawer = Visitor.extend({
     _ui: '',
     _canvas: '',
     init: function(ui,canvas){
-        console.log('New Drawer: ',ui);
         if(ui instanceof UI){
             this._ui = ui;
         }else{
@@ -25,41 +24,35 @@ var Drawer = Visitor.extend({
         div.css('left',elem.x+'px');
         div.css('float','left');
         this._canvas.prepend(div);
+        elem.setDomElem(div);
+        div.data('ws',elem);
         return div;
     },
     draw: function(){
         this._ui.evalFunc('visit',this);
     },
     visitGridBagLayout: function(elem){
-        var tmp = this.drawDiv(elem);
-        console.log("visitGridBagLayout: ",tmp);
+        this.drawDiv(elem);
     },
     visitLayout: function(elem){
-        var tmp = this.drawDiv(elem);
-        console.log("visitLayout: ",tmp);
+        this.drawDiv(elem);
     },
     visitUI: function(elem){
-        var tmp = this.drawDiv(elem);
-        console.log("visitUI: ",tmp);
+        //this.drawDiv(elem);
     },
     visitPanel: function(elem){
-        var tmp = this.drawDiv(elem);
-        console.log("visitPanel: ",tmp);
+        this.drawDiv(elem);
     },
     visitCheckBox: function(elem){
-        var tmp = this.drawDiv(elem);
-        console.log("visitCheckBox: ",tmp);
+        this.drawDiv(elem);
     },
     visitButton: function(elem){
-        var tmp = this.drawDiv(elem);
-        console.log("visitButton: ",tmp);
+        this.drawDiv(elem);
     },
     visitLabel: function(elem){
-        var tmp = this.drawDiv(elem);
-        console.log("visitLabel: ",tmp);
+        this.drawDiv(elem);
     },
     visitTextBox: function(elem){
-        var tmp = this.drawDiv(elem);
-        console.log("visitTextBox: ",tmp);
+        this.drawDiv(elem);
     }
 })
