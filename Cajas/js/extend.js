@@ -9,6 +9,13 @@ Array.prototype.oc = function(){
     }
     return o;
 }
+Array.prototype.has = function(val){
+    if(jQuery.inArray(val,this)==-1){
+        return false;
+    }else{
+        return true;
+    }
+}
 
 /**
  *Por las duedas...
@@ -40,3 +47,4 @@ if (!Array.prototype.forEach)
  * Para Log
  */
 var log = console.log;
+var type = jQuery.type;

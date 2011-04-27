@@ -44,6 +44,7 @@ function parsePanel(elem,parent){
         position.attr('height')
     );
     panel.addTag(new Tag_Id(elem.attr('id')));
+    panel.addTag(new Tag_Layout(elem.children('layout').children().get(0).tagName));
     parent.addSubControl(panel);
     /**
      * Este error ahi que corregirlo en el schema...
@@ -54,7 +55,7 @@ function parsePanel(elem,parent){
 
 function parseButton(elem,parent){
     position = elem.children('originalPosition');
-    button = new Panel(
+    button = new Button(
         getNextId(),
         position.attr('x'),
         position.attr('y'),
@@ -67,7 +68,7 @@ function parseButton(elem,parent){
 
 function parseCheckBox(elem,parent){
     position = elem.children('originalPosition');
-    checkBox = new Panel(
+    checkBox = new CheckBox(
         getNextId(),
         position.attr('x'),
         position.attr('y'),

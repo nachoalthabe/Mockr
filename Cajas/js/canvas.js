@@ -54,19 +54,7 @@ $(document).ready(function(){
     findTagInput = $('#findTag');
     themeTag = $('#themeTag');
     listOfTagsDiv = $('#listOfTags');
-
-    initFindTagInput();
 });
-
-function initFindTagInput(){
-    findTagInput.autocomplete({
-        source: ['id','Layout','Repetition','Template','TemplateInstantiation','Placeholder','PlaceholderContent'],
-        select: addNewTag,
-        close: clearInput,
-        delay: 0
-    });
-    findTagInput.bind('focus',clearInput);
-}
 
 function addNewTag(event,ui){
     lastTag = themeTag.children().clone();
@@ -81,6 +69,7 @@ function removeThisTag(tag){
 function loadInMenu(component){
     $('#boxId').text(component.getTag('id').getId());
     $('#boxType').text(component.getClassName());
+    log(component.getValidTags());
 }
 
 function clearInput(){
