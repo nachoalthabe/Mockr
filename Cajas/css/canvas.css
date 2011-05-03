@@ -63,3 +63,13 @@
     -moz-border-radius: 2px 0px;
     border-radius: 2px 0px;
 }
+.addTagButton{
+    float: right;
+    position: relative;
+    z-index: 10;
+    top: -7px;
+    right: -7px;
+    background: url(../images/plus.jpg);
+    width: 15px;
+    height: 15px;
+}

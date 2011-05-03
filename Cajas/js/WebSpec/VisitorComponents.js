@@ -23,7 +23,8 @@ var Drawer = Visitor.extend({
         div.css('top',elem.y+'px');
         div.css('left',elem.x+'px');
         div.css('float','left');
-        div.append($('<div>').addClass('tagsContainer'))
+        div.append($('<div>').addClass('addTagButton'));
+        div.append($('<div>').addClass('tagsContainer'));
         this._canvas.prepend(div);
         elem.setDomElem(div);
         div.data('ws',elem);

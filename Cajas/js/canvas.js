@@ -1,5 +1,5 @@
 //Canvas Section
-var canvas,boxes,file,cComp,tagDrawer;
+var canvas,boxes,addTagButtons,file,cComp,tagDrawer;
 
 $(document).ready(function(){
     canvas = $("#canvas");
@@ -32,6 +32,7 @@ function loadData(data){
     tagDrawer = new TagDrawer(mockup);
     tagDrawer.draw();
     boxes = $(".box");
+    addTagButtons = $('.addTagButton')
     addLive();
 }
 
@@ -41,12 +42,28 @@ function updateTagsOfComponent(comp){
 
 function addLive(){
     boxes.mousedown(activeBox);
+    addTagButtons.mousedown(addTagWindow);
 }
 
 function activeBox(){
     boxes.filter('.active').removeClass('active');
     elem = $(this).addClass('active');
-    loadInMenu(elem.data('ws'));
+    component = elem.data('ws');
+    cComp = component;
+    $('#boxId').text(component.getTag('id').getId());
+    $('#boxType').text(component.getClassName());
+    loadAvailableTags(component);
+}
+
+function addTagWindow(){
+    var elem = $(this),
+    parent = elem.parent(),
+    component = parent.data('ws'),
+    offset = elem.offset();
+    parent.mousedown();
+    availableTagsWindow.setPosition(offset.left,offset.top);
+    availableTagsWindow.setTitle(component.getTag('id').getId());
+    availableTagsWindow.show();
 }
 
 //Menu Section
@@ -69,13 +86,6 @@ function addNewTag(event,ui){
 
 function removeThisTag(tag){
     $(tag).parent().remove();
-}
-
-function loadInMenu(component){
-    cComp = component;
-    $('#boxId').text(component.getTag('id').getId());
-    $('#boxType').text(component.getClassName());
-    loadAvailableTags(component);
 }
 
 function clearInput(){

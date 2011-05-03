@@ -11,7 +11,6 @@ var TagDrawer = Visitor.extend({
         dom = elem.getDomElem().children('.tagsContainer').empty();
         
         tags.forEach(function(tag){
-            log(tag);
             div = $('<div>');
             div.text(tag.getTagName());
             div.addClass('tagLabel');

@@ -1,24 +1,24 @@
-var TagsGridStore = null;
-var TagList = Class.extend({
-
-    });
+var TagsGridStore;
 
 function getAvailableTagsGrid() {
-    Ext.define('Tags', {
-        extend: 'Ext.data.Model',
-        fields: [{
-            name: 'tagName',
-            type: 'string'
-        },{
-            name: 'tagActived',
-            type: 'bool'
-        }]
+    
+    return generateGridOfAvailableTags();
+};
+
+function getAvailableTagsWindow(_availableTagsPanel) {
+    var window = Ext.create('widget.window', {
+        closable: true,
+        closeAction: 'hide',
+        layout: 'fit',
+        items: [generateGridOfAvailableTags(false)],
     });
-    TagsGridStore = new Ext.data.Store({
-        model: 'Tags',
-        data : []
-    });
-    var grid = Ext.create('Ext.grid.Panel', {
+    return window;
+}
+
+function generateGridOfAvailableTags(showTitle){
+    if(showTitle == undefined)
+        showTitle = true
+    return Ext.create('Ext.grid.Panel', {
         store: TagsGridStore,
         columns: [{
             xtype: 'checkcolumn',
@@ -65,11 +65,27 @@ function getAvailableTagsGrid() {
             }]
         }],
         columnLines: true,
-        width: 250,
-        height: 218,
-        title: 'Availabe Tags',
+        autoScroll: true,
+        height: 212,
+        title: (showTitle)?'Availabe Tags':undefined,
         iconCls: 'icon-grid',
         autoScroll: true
     });
-    return grid;
-};
+}
+
+function generateStructuresForAvailableTags(){
+    Ext.define('Tags', {
+        extend: 'Ext.data.Model',
+        fields: [{
+            name: 'tagName',
+            type: 'string'
+        },{
+            name: 'tagActived',
+            type: 'bool'
+        }]
+    });
+    TagsGridStore = new Ext.data.Store({
+        model: 'Tags',
+        data : []
+    });
+}

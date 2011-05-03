@@ -4,13 +4,18 @@ Ext.Loader.setConfig({
 Ext.Loader.setPath('Ext.ux', '/js/ext/ux');
 Ext.require(['*','Ext.ux.CheckColumn']);
 
+var availableTagsPanel,availableTagsWindow;
+
+
 Ext.onReady(function() {
 
     Ext.QuickTips.init();
 
     Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider'));
 
+    generateStructuresForAvailableTags();
     availableTagsPanel = getAvailableTagsGrid();
+    availableTagsWindow = getAvailableTagsWindow(availableTagsPanel);
 
     var viewport = Ext.create('Ext.Viewport', {
         id: 'border-example',
