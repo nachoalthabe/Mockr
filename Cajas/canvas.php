@@ -5,7 +5,7 @@
         <title>Cajas!!</title>
     </head>
     <script src="js/jq/jq.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/ext/bootstrap.js"></script>
+    <script src="js/ext/bootstrap.js" type="text/javascript"></script>
     <script src="js/extend.js" type="text/javascript"></script>
     <script src="js/sJSi.js" type="text/javascript"></script>
     <script src="js/WebSpec/Components.js" type="text/javascript"></script>
@@ -13,9 +13,11 @@
     <script src="js/WebSpec/VisitorComponents.js" type="text/javascript"></script>
     <script src="js/WebSpec/Parser.js" type="text/javascript"></script>
     <script src="js/canvas.js" type="text/javascript"></script>
+    <script src="js/ide/tags.js" type="text/javascript"></script>
+    <script src="js/ide/menu.js" type="text/javascript"></script>
     <script src="js/layout.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="css/canvas.css" type="text/css" media="all" />
     <link rel="stylesheet" type="text/css" href="js/ext/resources/css/ext-all.css" />
+    <link rel="stylesheet" href="css/canvas.css" type="text/css" media="all" />
 
     <script type="text/javascript">
         var file = <?php echo (isset($_POST['fileToEdit'])) ? '"' . $_POST['fileToEdit'] . '"' : 'null'; ?>
@@ -33,7 +35,17 @@
                 <span id="boxType">locas</span>
             </div>
             <div id="tagsOfBox">
-                
+                <div id="tagList">
+                </div>
+            </div>
+        </div>
+        <div id="themes">
+            <div id="availableTagItem">
+                <div class="availableTagItem">
+                    <input class="activateTag" type="checkbox" />
+                    <span class="tagName"></span>
+                    <img class="getTagForm" src="images/ico_prop.png" />
+                </div>
             </div>
         </div>
     </body>

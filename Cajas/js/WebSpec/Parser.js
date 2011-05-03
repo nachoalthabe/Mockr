@@ -17,7 +17,7 @@ function parseLabel(elem,parent){
         position.attr('height'),
         elem.attr('label')
     );
-    label.addTag(new Tag_Id(elem.attr('id')));
+    label.addTag(new Tag_id(elem.attr('id')));
     parent.addSubControl(label);
 }
 
@@ -30,7 +30,7 @@ function parseTextBox(elem,parent){
         position.attr('width'),
         position.attr('height')
     );
-    textBox.addTag(new Tag_Id(elem.attr('id')));
+    textBox.addTag(new Tag_id(elem.attr('id')));
     parent.addSubControl(textBox);
 }
 
@@ -43,8 +43,8 @@ function parsePanel(elem,parent){
         position.attr('width'),
         position.attr('height')
     );
-    panel.addTag(new Tag_Id(elem.attr('id')));
-    panel.addTag(new Tag_Layout(elem.children('layout').children().get(0).tagName));
+    panel.addTag(new Tag_id(elem.attr('id')));
+    panel.addTag(new Tag_layout(elem.children('layout').children().get(0).tagName));
     parent.addSubControl(panel);
     /**
      * Este error ahi que corregirlo en el schema...
@@ -62,7 +62,7 @@ function parseButton(elem,parent){
         position.attr('width'),
         position.attr('height')
     );
-    button.addTag(new Tag_Id(elem.attr('id')));
+    button.addTag(new Tag_id(elem.attr('id')));
     parent.addSubControl(button);
 }
 
@@ -75,7 +75,7 @@ function parseCheckBox(elem,parent){
         position.attr('width'),
         position.attr('height')
     );
-    checkBox.addTag(new Tag_Id(elem.attr('id')));
+    checkBox.addTag(new Tag_id(elem.attr('id')));
     parent.addSubControl(checkBox);
 }
 function parseLayout(elem,parent){

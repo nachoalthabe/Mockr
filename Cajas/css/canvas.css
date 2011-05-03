@@ -18,11 +18,33 @@
 #infoOfBox{
     text-align: center;
     margin: 5px 2px;
-    border-bottom: 2px groove #000;
 }
 #boxId{
     font: bold 18px monospace;
 }
 #boxType{
     font: normal 15px monospace;
+}
+#themes{
+    display: none
+}
+
+/*Style de los checkbox*/
+.x-grid-checkheader {
+    height: 14px;
+    background-image: url('/images/unchecked.gif');
+    background-position: 50% -2px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.x-grid-checkheader-checked {
+    background-image: url('/images/checked.gif');
+}
+
+.x-grid-checkheader-editor .x-form-cb-wrap {
+    text-align: center;
+}
+.x-grid-dirty-cell{
+    background: none;
 }

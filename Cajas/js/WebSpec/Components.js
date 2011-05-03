@@ -54,8 +54,18 @@ var UIControl = Class.extend({
             return false;
         }
     },
+    removeTag: function(tagName){
+        log('remove:',tagName);
+        if(this._tags[tagName] != undefined){
+            this._tags[tagName] = null;
+            this._tags[tagName] = undefined;
+            return true;
+        }else{
+            return false;
+        }
+    },
     getValidTags: function(){
-      return this._validTags;
+        return this._validTags;
     },
     setDomElem: function(elem){
         this._domElem = elem;

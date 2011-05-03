@@ -1,5 +1,5 @@
 //Canvas Section
-var canvas,boxes,file;
+var canvas,boxes,file,cComp;
 
 $(document).ready(function(){
     canvas = $("#canvas");
@@ -67,9 +67,10 @@ function removeThisTag(tag){
 }
 
 function loadInMenu(component){
+    cComp = component;
     $('#boxId').text(component.getTag('id').getId());
     $('#boxType').text(component.getClassName());
-    log(component.getValidTags());
+    loadAvailableTags(component);
 }
 
 function clearInput(){

@@ -1,30 +1,21 @@
 var TagsDictionary = {
-    'Id': ['UIControl'],
-    'Layout': ['CompositeControl'],
-    'Repetition': ['Panel'],
-    'Template': ['Panel'],
-    'TemplateInstantiation': ['Panel'],
-    'Placeholder': ['Panel'],
-    'PlaceholderContent': ['Panel']
+    'id': ['UIControl'],
+    'layout': ['CompositeControl'],
+    'repetition': ['Panel'],
+    'template': ['Panel'],
+    'templateInstantiation': ['Panel'],
+    'placeholder': ['Panel'],
+    'placeholderContent': ['Panel']
 }
 
 var Tags = Class.extend({
     _tagName: 'tags',
-    _compatible:{},
-    init: function(widget){
-        if(!widget instanceof Widget){
-            throw('El widget no es valido');
-        }
-    },
-    validate: function(widget){
-
-    },
     getTagName: function(){
         return this._tagName;
     }
 });
 
-var Tag_Id = Tags.extend({
+var Tag_id = Tags.extend({
     _tagName: 'id',
     _id: '',
     init: function(id){
@@ -38,7 +29,7 @@ var Tag_Id = Tags.extend({
     }
 });
 
-var Tag_Layout = Tags.extend({
+var Tag_layout = Tags.extend({
     _tagName: 'layout',
     _validLayouts: null,
     _type: null,
@@ -56,3 +47,27 @@ var Tag_Layout = Tags.extend({
         }
     }
 })
+
+var Tag_repetition = Tags.extend({
+    _tagName: 'repetition'
+});
+
+var Tag_template = Tags.extend({
+    _tagName: 'template'
+});
+
+var Tag_templateInstantiation = Tags.extend({
+    _tagName: 'templateInstantiation'
+});
+
+var Tag_placeholder = Tags.extend({
+    _tagName: 'placeholder'
+});
+
+var Tag_placeholderContent = Tags.extend({
+    _tagName: 'placeholderContent'
+});
+
+var Tag_layoutInfo = Tags.extend({
+    _tagName: 'layoutInfo'
+});
