@@ -33,7 +33,6 @@ function getAvailableTagsGrid() {
                     tagName = record.get('tagName');
                     if(checked){
                         cComp.addTag(eval('new Tag_'+tagName+'()'));
-                        updateTagsOfComponent(cComp);
                     }else{
                         if(!cComp.removeTag(tagName)){
                             Ext.MessageBox.show({
@@ -46,6 +45,7 @@ function getAvailableTagsGrid() {
                             record.set('tagActived',true);
                         }
                     }
+                    updateTagsOfComponent(cComp);
                 }
             }
         },{

@@ -48,3 +48,18 @@
 .x-grid-dirty-cell{
     background: none;
 }
+
+.tagsContainer{
+    padding: 2px;
+}
+.tagLabel{
+    float: left;
+    background-color: #cccccc;
+    color: #000000;
+    font: normal 11px sans-serif;
+    padding: 1px;
+    margin: 1px;
+    border: 1px solid #000;
+    -moz-border-radius: 2px 0px;
+    border-radius: 2px 0px;
+}
