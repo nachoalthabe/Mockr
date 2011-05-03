@@ -1,5 +1,5 @@
 //Canvas Section
-var canvas,boxes,file,cComp;
+var canvas,boxes,file,cComp,tagDrawer;
 
 $(document).ready(function(){
     canvas = $("#canvas");
@@ -28,10 +28,15 @@ var mockup = new UI();
 function loadData(data){
     data = $(data).children().children('ui');
     Parser(data,mockup);
-    var drawer = new Drawer(mockup,$('#canvas'));
-    drawer.draw();
+    var drawer = new Drawer(mockup,$('#canvas')).draw();
+    tagDrawer = new TagDrawer(mockup);
+    tagDrawer.draw();
     boxes = $(".box");
     addLive();
+}
+
+function updateTagsOfComponent(comp){
+    tagDrawer.draw(comp);
 }
 
 function addLive(){

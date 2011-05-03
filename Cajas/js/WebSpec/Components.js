@@ -1,7 +1,9 @@
 var UIControl = Class.extend({
     _className : 'UIControl',
+    _requiredTags : ['id'],
     _validTags: null,
     _tags: null,
+    _tagsArray: null,
     _domElem: null,
     init: function(id, x, y, width, height){
         this.id = id;
@@ -10,6 +12,7 @@ var UIControl = Class.extend({
         this.width = width;
         this.height = height;
         this._tags = new Array();
+        this._tagsArray = [];
         this._validTags = ['id'];
     },
     apply: function(options){
@@ -41,7 +44,10 @@ var UIControl = Class.extend({
     },
     addTag: function(tag){
         if(this.isValidTag(tag)){
+            log(this._tags,tag.getTagName());
             this._tags[tag.getTagName()] = tag;
+            log(this._tags)
+            this._tagsSize = this._tagsSize + 1;
             return true;
         }else{
             return false;
@@ -54,11 +60,19 @@ var UIControl = Class.extend({
             return false;
         }
     },
+    getTags: function(){
+        if(this._tagsSize > 0){
+            this._tags.map()
+            return this._tags;
+        }else{
+            return false;
+        }
+    },
     removeTag: function(tagName){
-        log('remove:',tagName);
-        if(this._tags[tagName] != undefined){
+        if(this._tags[tagName] != undefined && !this._requiredTags.has(tagName)){
             this._tags[tagName] = null;
             this._tags[tagName] = undefined;
+            this._tagsSize = this._tagsSize - 1;
             return true;
         }else{
             return false;
@@ -69,6 +83,9 @@ var UIControl = Class.extend({
     },
     setDomElem: function(elem){
         this._domElem = elem;
+    },
+    getDomElem: function(){
+        return this._domElem;
     },
     getClassName: function(){
         return this._className;

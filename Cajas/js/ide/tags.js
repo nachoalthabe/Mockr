@@ -29,11 +29,22 @@ function getAvailableTagsGrid() {
                     if(cComp == undefined){
                         return;
                     };
-                    var tagName = TagsGridStore.getAt(rowIndex).get('tagName');
+                    var record = TagsGridStore.getAt(rowIndex),
+                    tagName = record.get('tagName');
                     if(checked){
                         cComp.addTag(eval('new Tag_'+tagName+'()'));
+                        updateTagsOfComponent(cComp);
                     }else{
-                        cComp.removeTag(tagName);
+                        if(!cComp.removeTag(tagName)){
+                            Ext.MessageBox.show({
+                                title: 'Error al eliminar tag',
+                                msg: 'No se puede eliminar el tag "'+tagName+'".',
+                                buttons: Ext.MessageBox.OK,
+                                animateTarget: this,
+                                icon: Ext.MessageBox.ERROR
+                            });
+                            record.set('tagActived',true);
+                        }
                     }
                 }
             }

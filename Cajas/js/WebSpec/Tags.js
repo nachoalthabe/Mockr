@@ -34,6 +34,10 @@ var Tag_layout = Tags.extend({
     _validLayouts: null,
     _type: null,
     init: function(layoutType){
+
+        if(layoutType == undefined)
+            layoutType = 'flowLayout';
+
         this._validLayouts = ['gridBagLayout','verticalBoxLayout','horizontalBoxLayout','flowLayout'];
         if(!this._isValidType(layoutType)){
             throw('El tipo de layout '+layoutType+' no es soportado.');

@@ -11,6 +11,7 @@
     <script src="js/WebSpec/Components.js" type="text/javascript"></script>
     <script src="js/WebSpec/Tags.js" type="text/javascript"></script>
     <script src="js/WebSpec/VisitorComponents.js" type="text/javascript"></script>
+    <script src="js/WebSpec/VisitorComponentsTags.js" type="text/javascript"></script>
     <script src="js/WebSpec/Parser.js" type="text/javascript"></script>
     <script src="js/canvas.js" type="text/javascript"></script>
     <script src="js/ide/tags.js" type="text/javascript"></script>
