@@ -35,6 +35,8 @@ function parseHTML(tree){
                 component.addSubControl(parseHTML(item));
             })
         }
+        component.setDomElem(elem);
+        elem.data('ws',component);
         return component;
     }
 }
