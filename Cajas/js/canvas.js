@@ -69,6 +69,21 @@ function addTagWindow(){
     availableTagsWindow.show();
 }
 
+function associateWidgetAndTags(jqDomElem,componentInstance){
+    componentInstance.setDomElem(jqDomElem);
+    jqDomElem.data('ws',componentInstance);
+}
+
+function addTagWindowToRealBox(jqDomElem){
+    component = jqDomElem.data('ws'),
+    offset = jqDomElem.offset();
+    cComp = component;
+    loadAvailableTags(component);
+    availableTagsWindow.setPosition(offset.left,offset.top);
+    availableTagsWindow.setTitle(component.getTag('id').getId());
+    availableTagsWindow.show();
+}
+
 //Menu Section
 var menu,boxTitleSpan,boxTypeSpan,findTagInput,listOfTagsDiv,themeTag,lastTag;
 
