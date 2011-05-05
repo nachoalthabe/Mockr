@@ -7,6 +7,12 @@
     text-shadow: 2px 2px 2px #CCC;
     height: 25px;
 }
+#boxes{
+    position: absolute;
+    top: 25px;
+    height: 100%;
+    width: 100%;
+}
 /*Canvas Section*/
 #canvas .box{
     border: 1px solid #000;

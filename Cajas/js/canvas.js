@@ -74,7 +74,8 @@ function associateWidgetAndTags(jqDomElem,componentInstance){
     jqDomElem.data('ws',componentInstance);
 }
 
-function addTagWindowToRealBox(jqDomElem){
+function addTagWindowToRealBox(){
+    jqDomElem = $(this);
     component = jqDomElem.data('ws'),
     offset = jqDomElem.offset();
     cComp = component;

@@ -31,6 +31,8 @@
         </div>
         <div id="canvas">
         </div>
+        <div id="boxes">
+        </div>
         <div id="panels">
             <div id="title">
                 <span>Cajas...</span>

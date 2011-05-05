@@ -6,7 +6,12 @@ var Visitor = Class.extend({
 var Drawer = Visitor.extend({
     _ui: '',
     _canvas: '',
-    init: function(ui,canvas){
+    init: function(ui,canvas,withAddButton){
+        if(withAddButton == undefined){
+            this._withAddButton = true;
+        }else{
+            this._withAddButton = withAddButton;
+        }
         if(ui instanceof UI){
             this._ui = ui;
         }else{
@@ -19,13 +24,15 @@ var Drawer = Visitor.extend({
         div.addClass('box');
         div.css('width',elem.width+'px');
         div.css('height',elem.height+'px');
-        div.css('position','relative');
+        div.css('position','absolute');
         div.css('top',elem.y+'px');
         div.css('left',elem.x+'px');
         div.css('float','left');
-        div.append($('<div>').addClass('addTagButton'));
+        if(this._withAddButton){
+            div.append($('<div>').addClass('addTagButton'));
+        }
         div.append($('<div>').addClass('tagsContainer'));
-        this._canvas.prepend(div);
+        this._canvas.append(div);
         elem.setDomElem(div);
         div.data('ws',elem);
         return div;
@@ -40,7 +47,7 @@ var Drawer = Visitor.extend({
         this.drawDiv(elem);
     },
     visitUI: function(elem){
-        //this.drawDiv(elem);
+    //this.drawDiv(elem);
     },
     visitPanel: function(elem){
         this.drawDiv(elem);
