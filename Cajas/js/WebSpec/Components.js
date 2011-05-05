@@ -1,3 +1,14 @@
+var availableComponents = [
+    'TextBox',
+    'Label',
+    'Button',
+    'CheckBox',
+    'Panel',
+    'Form',
+    'UI',
+    'Layout'
+]
+
 var UIControl = Class.extend({
     _className : 'UIControl',
     _requiredTags : ['id'],
@@ -152,7 +163,7 @@ var TextBox = SimpleControl.extend({
 var Label = SimpleControl.extend({
     _className : 'Label',
     label: '',
-    init: function(id, x, y, width, height,label){
+    init: function(id, x, y, width, height, label){
         this._super(id, x, y, width, height);
         this.label = label;
     },
@@ -180,6 +191,18 @@ var Panel = CompositeControl.extend({
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
         this._validTags.push('repetition','template','templateInstantiation','placeholder','placeholderContent');
+    },
+    _visit: function(v){
+        v.visitPanel(this);
+    }
+});
+var Form = CompositeControl.extend({
+    _className : 'Form',
+    init: function(id, x, y, width, height, action, method){
+        this._super(id, x, y, width, height);
+        this._validTags.push('repetition','template','templateInstantiation','placeholder','placeholderContent');
+        this._action = action;
+        this._method = method;
     },
     _visit: function(v){
         v.visitPanel(this);

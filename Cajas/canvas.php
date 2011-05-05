@@ -17,6 +17,8 @@
     <script src="js/ide/tags.js" type="text/javascript"></script>
     <script src="js/ide/menu.js" type="text/javascript"></script>
     <script src="js/layout.js" type="text/javascript"></script>
+    <script src="js/demo/common.js" type="text/javascript"></script>
+    <script src="js/demo/20110504.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="js/ext/resources/css/ext-all.css" />
     <link rel="stylesheet" href="css/canvas.css" type="text/css" media="all" />
 
@@ -29,14 +31,21 @@
         </div>
         <div id="canvas">
         </div>
-        <div id="menu">
-            <div id="infoOfBox">
-                <span id="boxId">cajas</span>
-                <br />
-                <span id="boxType">locas</span>
+        <div id="panels">
+            <div id="title">
+                <span>Cajas...</span>
             </div>
-            <div id="tagsOfBox">
-                <div id="tagList">
+            <div id="canvas">
+            </div>
+            <div id="menu">
+                <div id="infoOfBox">
+                    <span id="boxId">cajas</span>
+                    <br />
+                    <span id="boxType">locas</span>
+                </div>
+                <div id="tagsOfBox">
+                    <div id="tagList">
+                    </div>
                 </div>
             </div>
         </div>

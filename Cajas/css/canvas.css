@@ -5,6 +5,7 @@
     color: #333;
     padding: 4px;
     text-shadow: 2px 2px 2px #CCC;
+    height: 25px;
 }
 /*Canvas Section*/
 #canvas .box{
@@ -72,4 +73,7 @@
     background: url(../images/plus.jpg);
     width: 15px;
     height: 15px;
+}
+#panels{
+    display: none;
 }

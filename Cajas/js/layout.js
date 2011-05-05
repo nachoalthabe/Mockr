@@ -16,14 +16,14 @@ Ext.onReady(function() {
     generateStructuresForAvailableTags();
     availableTagsPanel = getAvailableTagsGrid();
     availableTagsWindow = getAvailableTagsWindow(availableTagsPanel);
-
+    return;
     var viewport = Ext.create('Ext.Viewport', {
         id: 'border-example',
         layout: 'border',
         items: [{
             region: 'north',
             contentEl: 'title'
-        },{
+        }/*,{
             region: 'west',
             contentEl: 'menu',
             width: 200,
@@ -31,9 +31,10 @@ Ext.onReady(function() {
                 contentEl: 'infoOfBox',
                 border: 0
             },availableTagsPanel]
-        },{
+        }*/,{
             region: 'center',
-            contentEl: 'canvas'
+            contentEl: 'canvas',
+            frame: true
         }]
     });
 });

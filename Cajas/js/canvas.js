@@ -1,12 +1,17 @@
 //Canvas Section
-var canvas,boxes,addTagButtons,file,cComp,tagDrawer;
+var canvas,boxes,addTagButtons,file,cComp,tagDrawer,mockup;
+
+var demoMode = true;
 
 $(document).ready(function(){
     canvas = $("#canvas");
-    actBox = canvas.filter('div:first-child');
-    prevBox = null;
-    if(file != null){
-        retriveFile(file);
+    mockup = new UI();
+    if(demoMode){
+        loadDomDemo();
+    }else{
+        if(file != null){
+            retriveFile(file);
+        }
     }
 });
 
@@ -22,8 +27,6 @@ function retriveFile(file){
     });
  
 }
-
-var mockup = new UI();
 
 function loadData(data){
     data = $(data).children().children('ui');

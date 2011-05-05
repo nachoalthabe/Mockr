@@ -8,7 +8,6 @@ Array.prototype.has = function(val){
         return true;
     }
 }
-
 /**
  *Por las duedas...
  */
