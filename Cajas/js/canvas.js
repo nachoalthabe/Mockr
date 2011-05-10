@@ -53,7 +53,7 @@ function activeBox(){
     elem = $(this).addClass('active');
     component = elem.data('ws');
     cComp = component;
-    $('#boxId').text(component.getTag('id').getId());
+    $('#boxId').text(component.getId());
     $('#boxType').text(component.getClassName());
     loadAvailableTags(component);
 }
@@ -81,7 +81,7 @@ function addTagWindowToRealBox(){
     cComp = component;
     loadAvailableTags(component);
     availableTagsWindow.setPosition(offset.left,offset.top);
-    availableTagsWindow.setTitle(component.getTag('id').getId());
+    availableTagsWindow.setTitle(component.getId());
     availableTagsWindow.show();
 }
 

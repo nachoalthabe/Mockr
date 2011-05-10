@@ -8,6 +8,8 @@ function loadHTMLInCanvas(file,tree){
         tagDrawer.draw();
         boxes = $('.box');
         boxes.mousedown(addTagWindowToRealBox);
+        boxes.mouseover(markRealBox);
+        boxes.mouseleave(unmarkRealBox);
     });
 }
 
@@ -34,7 +36,7 @@ function parseHTML(tree){
                 component = eval('new '+tree.type+'("'+getNextId()+'",'+[x,y,width,height].join(',')+')');
                 break;
         }
-        component.addTag(new Tag_id(id));
+        //component.addTag(new Tag_id(id));
         if(tree.items != undefined){
             tree.items.forEach(function(item){
                 component.addSubControl(parseHTML(item));
@@ -43,4 +45,12 @@ function parseHTML(tree){
         console.log(id,x,y,width,height);
         return component;
     }
+}
+
+function markRealBox(){
+    $(this).addClass('active');
+}
+
+function unmarkRealBox(){
+    $(this).removeClass('active');
 }

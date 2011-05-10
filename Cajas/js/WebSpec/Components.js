@@ -1,12 +1,12 @@
 var availableComponents = [
-    'TextBox',
-    'Label',
-    'Button',
-    'CheckBox',
-    'Panel',
-    'Form',
-    'UI',
-    'Layout'
+'TextBox',
+'Label',
+'Button',
+'CheckBox',
+'Panel',
+'Form',
+'UI',
+'Layout'
 ]
 
 var UIControl = Class.extend({
@@ -25,6 +25,9 @@ var UIControl = Class.extend({
         this._tags = new Array();
         this._tagsArray = [];
         this._validTags = ['id'];
+    },
+    getId: function(){
+        return this.id;
     },
     apply: function(options){
         var settings = jQuery.extend(true,{}, this._options, options);
@@ -80,25 +83,21 @@ var UIControl = Class.extend({
         return false;
     },
     getTags: function(){
-        if(this._tags.length > 0){
-            return this._tags;
-        }else{
-            return false;
-        }
+        return this._tags;
     },
     removeTag: function(tagName){
-        if(!this._requiredTags.has(tagName)){
-            var len=this._tags.length;
-            for(var i=0; i<len; i++) {
-                if(this._tags[i].getTagName() == tagName){
-                   this._tags.splice(i,1);
-                   return true;
-                }
+        //if(!this._requiredTags.has(tagName)){
+        var len=this._tags.length;
+        for(var i=0; i<len; i++) {
+            if(this._tags[i].getTagName() == tagName){
+                this._tags.splice(i,1);
+                return true;
             }
-            return false;
-        }else{
-            return false;
         }
+        return false;
+    /*}else{
+            return false;
+        }*/
     },
     getValidTags: function(){
         return this._validTags;
@@ -120,7 +119,7 @@ var SimpleControl = UIControl.extend({
     _className : 'SimpleControl',
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
-        this._validTags.push('layoutInfo');
+        this._validTags.push('LayoutInfo');
     }
 });
 var CompositeControl = UIControl.extend({
@@ -130,7 +129,7 @@ var CompositeControl = UIControl.extend({
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
         this._subControls = new Array();
-        this._validTags.push('layout');
+        this._validTags.push('Layout','Data');
     },
     addSubControl: function(subcontrol){
         if (!(subcontrol instanceof UIControl)){
@@ -171,8 +170,22 @@ var Label = SimpleControl.extend({
         v.visitLabel(this);
     }
 });
+var Link = SimpleControl.extend({
+    _className : 'Link',
+    init: function(id, x, y, width, height, label){
+        this._super(id, x, y, width, height);
+        this._validTags.push('Link');
+    },
+    _visit: function(v){
+        v.visitLabel(this);
+    }
+});
 var Button = SimpleControl.extend({
     _className : 'Button',
+    init: function(id, x, y, width, height){
+        this._super(id, x, y, width, height);
+        this._validTags.push('Link');
+    },
     _visit: function(v){
         v.visitButton(this);
     }
@@ -191,6 +204,18 @@ var Panel = CompositeControl.extend({
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
         this._validTags.push('repetition','template','templateInstantiation','placeholder','placeholderContent');
+    },
+    _visit: function(v){
+        v.visitPanel(this);
+    }
+});
+var Page = CompositeControl.extend({
+    _className : 'Page',
+    init: function(id, x, y, width, height){
+        this._super(id, x, y, width, height);
+        this._validTags.push('Node');
+        this._action = action;
+        this._method = method;
     },
     _visit: function(v){
         v.visitPanel(this);

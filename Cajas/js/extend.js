@@ -11,10 +11,8 @@ Array.prototype.has = function(val){
 /**
  *Por las duedas...
  */
-if (!Array.prototype.forEach)
-{
-    Array.prototype.forEach = function(fun /*, thisp */)
-    {
+if (!Array.prototype.forEach){
+    Array.prototype.forEach = function(fun /*, thisp */){
         "use strict";
 
         if (this === void 0 || this === null)
@@ -34,10 +32,8 @@ if (!Array.prototype.forEach)
     };
 }
 
-if (!Array.prototype.map)
-{
-  Array.prototype.map = function(fun /*, thisp */)
-  {
+if (!Array.prototype.map){
+  Array.prototype.map = function(fun /*, thisp */){
     "use strict";
 
     if (this === void 0 || this === null)
@@ -60,10 +56,8 @@ if (!Array.prototype.map)
   };
 }
 
-if (!Array.prototype.filter)
-{
-  Array.prototype.filter = function(fun /*, thisp */)
-  {
+if (!Array.prototype.filter){
+  Array.prototype.filter = function(fun /*, thisp */){
     "use strict";
 
     if (this === void 0 || this === null)
@@ -90,10 +84,8 @@ if (!Array.prototype.filter)
   };
 }
 
-if (!Array.prototype.some)
-{
-  Array.prototype.some = function(fun /*, thisp */)
-  {
+if (!Array.prototype.some){
+  Array.prototype.some = function(fun /*, thisp */){
     "use strict";
 
     if (this === void 0 || this === null)

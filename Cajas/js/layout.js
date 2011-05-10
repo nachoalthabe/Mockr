@@ -16,7 +16,10 @@ Ext.onReady(function() {
     generateStructuresForAvailableTags();
     availableTagsPanel = getAvailableTagsGrid();
     availableTagsWindow = getAvailableTagsWindow(availableTagsPanel);
-    return;
+
+    if(demoMode)
+        return;
+
     var viewport = Ext.create('Ext.Viewport', {
         id: 'border-example',
         layout: 'border',
