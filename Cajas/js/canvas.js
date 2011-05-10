@@ -81,7 +81,7 @@ function addTagWindowToRealBox(){
     cComp = component;
     loadAvailableTags(component);
     availableTagsWindow.setPosition(offset.left,offset.top);
-    availableTagsWindow.setTitle(component.getId());
+    availableTagsWindow.setTitle(component.getId()+' :: '+component.getClassName());
     availableTagsWindow.show();
 }
 

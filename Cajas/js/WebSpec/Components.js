@@ -11,7 +11,7 @@ var availableComponents = [
 
 var UIControl = Class.extend({
     _className : 'UIControl',
-    _requiredTags : ['id'],
+    _requiredTags : null,
     _validTags: null,
     _tags: null,
     _tagsArray: null,
@@ -24,7 +24,8 @@ var UIControl = Class.extend({
         this.height = height;
         this._tags = new Array();
         this._tagsArray = [];
-        this._validTags = ['id'];
+        this._requireTags = [];
+        this._validTags = [];
     },
     getId: function(){
         return this.id;
@@ -119,7 +120,6 @@ var SimpleControl = UIControl.extend({
     _className : 'SimpleControl',
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
-        this._validTags.push('LayoutInfo');
     }
 });
 var CompositeControl = UIControl.extend({
@@ -129,7 +129,7 @@ var CompositeControl = UIControl.extend({
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
         this._subControls = new Array();
-        this._validTags.push('Layout','Data');
+        this._validTags.push('Data');
     },
     addSubControl: function(subcontrol){
         if (!(subcontrol instanceof UIControl)){
@@ -203,7 +203,6 @@ var Panel = CompositeControl.extend({
     _className : 'Panel',
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
-        this._validTags.push('repetition','template','templateInstantiation','placeholder','placeholderContent');
     },
     _visit: function(v){
         v.visitPanel(this);
@@ -225,7 +224,7 @@ var Form = CompositeControl.extend({
     _className : 'Form',
     init: function(id, x, y, width, height, action, method){
         this._super(id, x, y, width, height);
-        this._validTags.push('repetition','template','templateInstantiation','placeholder','placeholderContent');
+        this._validTags.push();
         this._action = action;
         this._method = method;
     },
