@@ -1,0 +1,36 @@
+<div id="htmlContainer">
+    <div id="panelLogin">
+        <form id="formLogin" method="POST" action="login.php">
+            <div class="label" id="panelLabelUser" ><label id="labelUser" for="user">Usuario:</label></div>
+            <input type="text" id="inputUser" name="user"/>
+            <br />
+            <div class="label" id="panelLabelPassword"><label id="labelPassword" for="pass">Contrase&ntilde;a:</label></div>
+            <input id="inputPassword" type="password" id="pass" name="pass"/>
+            <br />
+            <input type="submit" value="Ingresar" id="submitLogin"/>
+        </form>
+    </div>
+</div>
+<style type="text/css">
+    #htmlContainer form{
+        margin: 0px
+    }
+    #htmlContainer #panelLogin{
+        border: 4px double #666666;
+        padding: 5px;
+        margin: 50px auto;
+        width: 250px;
+        text-align: center;
+    }
+    #htmlContainer .label{
+        float: left;
+        width: 80px;
+        text-align: right;
+    }
+    #htmlContainer #wrapper{
+        text-align: center;
+    }
+    #submitLogin{
+        margin-top: 10px;
+    }
+</style>
