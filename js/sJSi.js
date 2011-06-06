@@ -44,7 +44,9 @@
             })(name, prop[name]) :
             prop[name];
         }
-
+        // By: NaaL :: Hack for make some tweeks
+        if ( this.preset )
+            this.preset.apply(this, arguments);
         // The dummy class constructor
         function Class() {
             // All construction is actually done in the init method

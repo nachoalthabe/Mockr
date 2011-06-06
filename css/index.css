@@ -1,13 +1,40 @@
-#gotoCanvas{
+body{
+    margin: 0
+}
+
+#header{
+    height: 30px;
+    background: #356AA0;
+    text-align: center;
+}
+#header span{
+    font: bold 18px sans-serif;
+    color: #EEEEEE;
+    position: relative;
+    top: 5px;
+}
+#canvas{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:30px;
+    left: 0px;
+}
+#boxes{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:30px;
+    left: 0px;
+}
+.activeBox{
+    border: 1px solid red;
+}
+.addTagsButton{
+    background: url('/images/plus.png') no-repeat;
+    width: 15px;
+    height: 15px;
+    float: right;
     display: none;
 }
-#body{
-    margin: 30px auto auto;
-    width: 370px;
-    border: 5px double #aaa;
-    text-align: center;
-    padding: 5px;
-}
-#body h1{
-    margin: 0px 0px 5px;
-}
+
