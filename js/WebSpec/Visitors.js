@@ -63,7 +63,6 @@ var Drawer = Visitor.extend({
         this._super(ui,this.draw);
     },
     draw: function(elem){
-        console.log(elem);
         var div = $('<div>');
         div.addClass('box');
         div.css('width',elem.width+'px');
@@ -72,7 +71,7 @@ var Drawer = Visitor.extend({
         div.css('top',elem.y+'px');
         div.css('left',elem.x+'px');
         div.css('float','left');
-        div.append($('<div>').addClass('addTagsButton').mousedown(boxMouseEvents.addTag));
+        //div.append($('<div>').addClass('addTagsButton').mousedown(boxMouseEvents.addTag));
         div.append($('<div>').addClass('tagsContainer'));
         this._canvas.append(div);
         div.mouseover(boxMouseEvents.over);

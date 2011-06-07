@@ -12,10 +12,12 @@ yepnope([{
     'js/WebSpec/Tags.js',
     'js/WebSpec/Visitors.js',
     'js/WebSpec/ParserHTML.js',
+    'js/mouseevents.js',
+    'js/ide/tagListBox.js',
     'js/ide.js'
     ],
     //Init general
     complete: function(){
-        loadHtml();
+        loadExampleHtml('login');
     }
 }]);

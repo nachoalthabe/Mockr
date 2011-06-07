@@ -26,6 +26,21 @@ var TagSets= {
     }
 }
 
+var Tag_id = Tags.extend({
+    _tagName: 'id',
+    _tagSet: TagSets.data,
+    _id: null,
+    init: function(id){
+        this.setId(id)
+    },
+    getId: function(){
+        return this._id
+    },
+    setId: function(id){
+        this._id = id
+    }
+})
+
 var Tag_data = Tags.extend({
     _tagName: 'data',
     _tagSet: TagSets.data

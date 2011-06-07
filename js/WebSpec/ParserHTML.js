@@ -2,7 +2,6 @@ function loadHTMLInCanvas(file,tree){
     $.get(file,function(data){
         canvas.html(data);
         mockup.addSubControl(parseHTML(tree));
-        console.log(mockup);
         var drawer = new Drawer(mockup,$('#boxes'),false).draw();
         tagDrawer = new TagDrawer(mockup);
         tagDrawer.draw();
@@ -17,8 +16,8 @@ function parseHTML(tree){
     if(availableWidgets.has(tree.type)){
         var elem = $('#'+tree.id),
         id = elem.attr('id'),
-        x = elem.offset().left,
-        y = elem.offset().top-30, //le resto el #title
+        x = elem.offset().left-1,
+        y = elem.offset().top-31, //le resto el #title
         width = elem.outerWidth(),
         height = elem.outerHeight();
         var component = null;
@@ -36,13 +35,13 @@ function parseHTML(tree){
                 component = eval('new '+tree.type+'("'+getNextId()+'",'+[x,y,width,height].join(',')+')');
                 break;
         }
-        //component.addTag(new Tag_id(id));
+        component.addTag(new Tag_id(id));
+        //console.log(component)
         if(tree.items != undefined){
             tree.items.forEach(function(item){
                 component.addSubControl(parseHTML(item));
             })
         }
-        console.log(id,x,y,width,height);
         return component;
     }else{
         throw('El Widget "'+tree.type+'" no esta implementado.');

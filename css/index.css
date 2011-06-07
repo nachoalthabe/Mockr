@@ -27,6 +27,36 @@ body{
     top:30px;
     left: 0px;
 }
+#tagSelectionPanel{
+    z-index: 1000;
+    position: absolute;
+    width: 140px;
+    height: 180px;
+    border: double 1px #36393D;
+    top: 20px;
+    left: 20px;
+    display: none;
+    font: 12px bold Arial;
+}
+#tagSelectionPanel #tspTitle{
+    width: 100%;
+    height: 15px;
+    background: #F9F7ED;
+    border-bottom: 1px solid #000;
+    text-align: center;
+}
+#tagSelectionPanel #tspThemes{
+    display: none;
+}
+#tagSelectionPanel #tspClose{
+    z-index: 1001;
+    right: -8px;
+    top: -8px;
+    cursor: pointer;
+    position: absolute;
+}
+
+/*Boxes styles*/
 .activeBox{
     border: 1px solid red;
 }
@@ -36,5 +66,16 @@ body{
     height: 15px;
     float: right;
     display: none;
+}
+
+/*Tags styles*/
+.tagLabel{
+    background:#EEE;
+    -moz-border-radius: 0px 5px 5px 0px;
+    border-radius: 0px 5px 5px 0px;
+    float: left;
+    padding: 0px 1px;
+    border: 1px solid #000;
+    font: 10px normal Arial;
 }
 
