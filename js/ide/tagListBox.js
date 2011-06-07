@@ -8,7 +8,10 @@ tagListBox = Class.extend({
     init: function(container){
         this._dom = $(container)
         this._title = $('<div>').attr('id','tspTitle')
-        this._closeBtn = $('<div>').attr('id','tspClose').append($('img').attr('src','images/close.png').attr('alt','Close tag list box')).mousedown(this.hide)
+        this._closeBtn = $('<div>').attr('id','tspClose').append($('<img>').attr({
+			src: 'images/close.png',
+			alt: 'Close tag list box'
+		}).mousedown(jQuery.proxy(this.hide,this)))
         this._container = $('<div>').attr('id','tspContent')
         this._dom.append(this._title,this._closeBtn,this._container)
     },
@@ -22,7 +25,7 @@ tagListBox = Class.extend({
         this._title.text(widget.getTag('id').getId())
         this._dom.show()
     },
-    hide: function(){
+    hide: function(event){
         this._dom.hide()
     }
 })
