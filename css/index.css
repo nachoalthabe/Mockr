@@ -31,12 +31,15 @@ body{
     z-index: 1000;
     position: absolute;
     width: 140px;
-    height: 180px;
     border: double 1px #36393D;
     top: 20px;
     left: 20px;
     display: none;
     font: 12px bold Arial;
+    background: #FFF;
+    -moz-box-shadow: 3px 3px 8px #888;
+    -webkit-box-shadow: 3px 3px 8px #888;
+    box-shadow: 3px 3px 8px #888;
 }
 #tagSelectionPanel #tspTitle{
     width: 100%;
@@ -78,4 +81,30 @@ body{
     border: 1px solid #000;
     font: 10px normal Arial;
 }
-
+.tlbiItem{
+    padding: 5px 10px;
+    border-bottom: 1px solid #eee;
+}
+.tlbiTitle{
+    width: 100px;
+    display: inline;
+}
+.tlbiTitle span{
+    font-size: 16px;
+}
+.tlbiChkBox{
+    float: right;
+    right: 5px;
+}
+.tlbiTitle div.tagSet{
+    width: 5px;
+    height: 19px;
+    margin-right: 5px;
+    float: left;
+}
+.tlbiTitle div.data{
+    background: #FF0000;
+}
+.tlbiTitle div.nav{
+    background: #00FF00;
+}

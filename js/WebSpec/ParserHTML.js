@@ -36,7 +36,6 @@ function parseHTML(tree){
                 break;
         }
         component.addTag(new Tag_id(id));
-        //console.log(component)
         if(tree.items != undefined){
             tree.items.forEach(function(item){
                 component.addSubControl(parseHTML(item));

@@ -110,5 +110,5 @@ if (!Array.prototype.some){
 /**
  * Para Log
  */
-var log = console.log;
+//var log = console.log;
 var type = jQuery.type;

@@ -24,8 +24,11 @@ var Widget = Class.extend({
         this.height = height;
         this._tags = new Array();
         this._tagsArray = [];
-        this._requireTags = [];
+        this._requiredTags = ['id'];
         this._validTags = ['id'];
+    },
+    toString: function(){
+        return this._className
     },
     getId: function(){
         return this.id;
@@ -87,18 +90,18 @@ var Widget = Class.extend({
         return this._tags;
     },
     removeTag: function(tagName){
-        //if(!this._requiredTags.has(tagName)){
-        var len=this._tags.length;
-        for(var i=0; i<len; i++) {
-            if(this._tags[i].getTagName() == tagName){
-                this._tags.splice(i,1);
-                return true;
+        if(!this._requiredTags.has(tagName)){
+            var len=this._tags.length;
+            for(var i=0; i<len; i++) {
+                if(this._tags[i].getTagName() == tagName){
+                    this._tags.splice(i,1);
+                    return true;
+                }
             }
-        }
-        return false;
-    /*}else{
             return false;
-        }*/
+        }else{
+            return false;
+        }
     },
     getValidTags: function(){
         return this._validTags;
@@ -129,7 +132,7 @@ var CompositeWidget = Widget.extend({
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
         this._subControls = new Array();
-        this._validTags.push('Data');
+        this._validTags.push('data');
     },
     addSubControl: function(subcontrol){
         if (!(subcontrol instanceof Widget)){
@@ -174,7 +177,7 @@ var Link = SimpleWidget.extend({
     _className : 'Link',
     init: function(id, x, y, width, height, label){
         this._super(id, x, y, width, height);
-        this._validTags.push('Link');
+        this._validTags.push('link');
     },
     _visit: function(v){
         v.visitLabel(this);
@@ -184,7 +187,7 @@ var Button = SimpleWidget.extend({
     _className : 'Button',
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
-        this._validTags.push('Link');
+        this._validTags.push('link');
     },
     _visit: function(v){
         v.visitButton(this);
@@ -212,7 +215,7 @@ var Page = CompositeWidget.extend({
     _className : 'Page',
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
-        this._validTags.push('Node');
+        this._validTags.push('node');
         this._action = action;
         this._method = method;
     },
