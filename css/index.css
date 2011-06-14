@@ -60,8 +60,11 @@ body{
 }
 
 /*Boxes styles*/
+.box{
+    border: 1px dashed #BBB;
+}
 .activeBox{
-    border: 1px solid red;
+    border: 1px dashed #F00;
 }
 .addTagsButton{
     background: url('/images/plus.png') no-repeat;

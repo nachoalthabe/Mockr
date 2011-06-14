@@ -4,6 +4,7 @@ var availableWidgets = [
 'Button',
 'CheckBox',
 'Panel',
+'Page',
 'Form',
 'UI',
 'Layout'
@@ -216,11 +217,9 @@ var Page = CompositeWidget.extend({
     init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
         this._validTags.push('node');
-        this._action = action;
-        this._method = method;
     },
     _visit: function(v){
-        v.visitPanel(this);
+        v.visitPage(this);
     }
 });
 var Form = CompositeWidget.extend({
