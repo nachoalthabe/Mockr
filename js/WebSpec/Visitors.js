@@ -29,11 +29,6 @@ var Visitor = Class.extend({
             console.log('visitPanel',elem);
         this._doit(elem);
     },
-    visitPage: function(elem){
-        if(debug)
-            console.log('visitPage',elem);
-        this._doit(elem);
-    },
     visitCheckBox: function(elem){
         if(debug)
             console.log('visitCheckBox',elem);
