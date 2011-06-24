@@ -13,6 +13,7 @@ yepnope([{
     'js/WebSpec/Visitors.js',
     'js/WebSpec/ParserHTML.js',
     'js/ide/tagListBox.js',
+    'js/ide/tagEditBox.js',
     'js/ide.js'
     ],
     //Init general

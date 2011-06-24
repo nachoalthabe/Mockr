@@ -11,22 +11,59 @@ var TagSets= {
     }
 }
 
+var TagSetClass = Class.extend({
+    init: function(){
+      this.__defineGetter__('name',this.getTagSetName)
+    },
+    toggleActive: function(){
+        this._active = !this._active
+    },
+    getActive: function(){
+        return this._active
+    },
+    getTagSetName: function(){
+        return this._name
+    }
+})
+
+var TagSet_Data = new (TagSetClass.extend({
+    _name:'data',
+    _color: 'FF0000',
+    _active: true
+}))()
+
+var TagSet_Nav = new (TagSetClass.extend({
+    _name: 'nav',
+    _color: '00FF00',
+    _active: true
+}))()
+
+var test = new Array()
+test[0] = TagSet_Data
+test[1]= TagSet_Data
+test[0].toggleActive()
+console.log(test)
+
+
+
+
+
 var TagsDictionary = {
     'id': {
         applyTo: ['Widget'],
-        tagSet: TagSets['data']
+        tagSet: TagSet_Data
     },
     'data': {
         applyTo: ['CompositeWidget','ComboBox','Table'],
-        tagSet: TagSets['data']
+        tagSet: TagSet_Data
     },
     'node': {
         applyTo: ['Page'],
-        tagSet: TagSets['nav']
+        tagSet: TagSet_Nav
     },
     'link': {
         applyTo: ['Link','Button'],
-        tagSet: TagSets['nav']
+        tagSet: TagSet_Nav
     }
 }
 
@@ -42,30 +79,38 @@ var Tags = Class.extend({
 
 var Tag_id = Tags.extend({
     _tagName: 'id',
-    _tagSet: TagSets['data'],
-    _id: null,
+    _tagSet: TagSet_Data,
+    _attr: null,
     init: function(id){
+        this._attr = {
+            id: {
+                value: '',
+                type: 'String'
+            }
+        };
         this.setId(id)
     },
     getId: function(){
-        return this._id
+        return this._attr['id']['value']
     },
     setId: function(id){
-        this._id = id
+        if(typeof id != this._attr['id']['type']){
+            this._attr['id']['value'] = id
+        }
     }
 })
 
 var Tag_data = Tags.extend({
     _tagName: 'data',
-    _tagSet: TagSets['data']
+    _tagSet: TagSet_Data
 })
 
 var Tag_link = Tags.extend({
     _tagName: 'link',
-    _tagSet: TagSets['nav']
+    _tagSet: TagSet_Nav
 });
 
 var Tag_node = Tags.extend({
     _tagName: 'node',
-    _tagSet: TagSets['nav']
+    _tagSet: TagSet_Nav
 });

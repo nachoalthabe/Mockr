@@ -25,8 +25,8 @@ var Widget = Class.extend({
         this.height = height;
         this._tags = new Array();
         this._tagsArray = [];
-        this._requiredTags = ['id'];
-        this._validTags = ['id'];
+        this._requiredTags = [];
+        this._validTags = [];
     },
     toString: function(){
         return this._className

@@ -20,19 +20,20 @@ function parseHTML(tree){
         y = elem.offset().top-31, //le resto el #title
         width = elem.outerWidth(),
         height = elem.outerHeight();
+        id = '"'+id+'"'
         var component = null;
         switch (tree.type) {
             case 'Label'://id,x,y,width,height,label
                 var label = elem.text();
-                component = eval('new Label("'+getNextId()+'",'+[x,y,width,height].join(',')+',"'+label+'")');
+                component = eval('new Label('+[id,x,y,width,height].join(',')+',"'+label+'")');
                 break;
             case 'Form'://id,x,y,width,height,action,method
                 var action = elem.attr('action'),
                 method = elem.attr('method');
-                component = eval('new Form("'+getNextId()+'",'+[x,y,width,height].join(',')+',"'+action+'","'+method+'")');
+                component = eval('new Form('+[id,x,y,width,height].join(',')+',"'+action+'","'+method+'")');
                 break;
             default://id,x,y,width,height
-                component = eval('new '+tree.type+'("'+getNextId()+'",'+[x,y,width,height].join(',')+')');
+                component = eval('new '+tree.type+'('+[id,x,y,width,height].join(',')+')');
                 break;
         }
         component.addTag(new Tag_id(id));
