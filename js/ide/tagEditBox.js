@@ -8,15 +8,18 @@ var tagEditor = Class.extend({
 			    alt: 'Close tag edit box'
 		    }).mousedown($.proxy(this.hide,this)))
 		  //Creo un manejador de lista de tags...
-		  tagListBoxItemsContainer = $('<div>').attr('id','tspContent')
-      this._container = $('<div>').attr('id','tspContent').append($('<span>').text(''))
-      this._dom.append(this._title,this._closeBtn,this._container)
+      this._container = $('<div>').addClass('tspContent')
+      this._submitBtn = $('<div>').append($('<input>').attr({
+	      type: 'button',
+	      value: 'Add'
+	    }).mousedown($.proxy(this.addTag,this)))
+      this._dom.append(this._title,this._closeBtn,this._container,this._submitBtn)
       //Seteando los accesors al tag
       this.__defineGetter__("tag",this.getTag)
       this.__defineSetter__("tag",this.setTag)
     },
     show: function(tag,dom){
-        this.tag = tag
+        this._tag = tag
         cOff = dom.offset()
         cPos = dom.position()
         //@TODO: Para mas adelante...
@@ -25,7 +28,7 @@ var tagEditor = Class.extend({
         this._dom.css('top',cPos.top)//TODO: Que tome el contexto
         this._dom.css('left',cPos.left)//TODO: Que tome el contexto
         this._title.text(tag.toString())
-        console.log(tag.toString())
+        this.renderParams()
         this._dom.show()
         return false
     },
@@ -37,5 +40,16 @@ var tagEditor = Class.extend({
     },
     hide: function(event){
         this._dom.hide()
+    },
+    renderParams: function(){
+      this._container.html('')
+      params = this._tag.getParams()
+      console.log(params)
+      for(var param in params){
+        params[param].render(this._container)
+      }
+    },
+    addTag: function(){
+      alert('Aca!')
     }
 })

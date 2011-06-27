@@ -99,6 +99,7 @@ tagListBoxItems = Class.extend({
         if(elem.attr('checked')){
             this._tag = eval('new Tag_'+tagName+'()');
             if(this._tagEditor.show(this._tag,elem)){
+                this._widget.addTag(this._tag)
                 if(this.widget.addTag(tag)){
                     console.log("Tag agregado con exito.");
                 }

@@ -1,16 +1,3 @@
-var TagSets= {
-    data: {
-        name: 'data',
-        color: "FF0000",
-        active: true
-    },
-    nav: {
-        name: 'nav',
-        color: "00FF00",
-        active: true
-    }
-}
-
 var TagSetClass = Class.extend({
     init: function(){
       this.__defineGetter__('name',this.getTagSetName)
@@ -38,16 +25,6 @@ var TagSet_Nav = new (TagSetClass.extend({
     _active: true
 }))()
 
-var test = new Array()
-test[0] = TagSet_Data
-test[1]= TagSet_Data
-test[0].toggleActive()
-console.log(test)
-
-
-
-
-
 var TagsDictionary = {
     'id': {
         applyTo: ['Widget'],
@@ -69,48 +46,65 @@ var TagsDictionary = {
 
 var Tags = Class.extend({
     _tagName: 'tags',
+    _params: null,
+    init: function(){
+      this._params = {}
+    },
     getTagName: function(){
         return this._tagName
     },
     toString: function(){
         return this._tagName
+    },
+    getParams: function(){
+      return this._params
     }
 });
 
 var Tag_id = Tags.extend({
-    _tagName: 'id',
-    _tagSet: TagSet_Data,
-    _attr: null,
-    init: function(id){
-        this._attr = {
-            id: {
-                value: '',
-                type: 'String'
-            }
-        };
-        this.setId(id)
-    },
-    getId: function(){
-        return this._attr['id']['value']
-    },
-    setId: function(id){
-        if(typeof id != this._attr['id']['type']){
-            this._attr['id']['value'] = id
-        }
-    }
+  _tagName: 'id',
+  _tagSet: TagSet_Data,
+  init: function(id){
+    this._super()
+    this._params.id = new TextValue(20)
+    this.setId(id)
+  },
+  getId: function(){
+    return this._params.id.getValue()
+  },
+  setId: function(id){
+    this._params['id'].setValue(id)
+  }
 })
 
 var Tag_data = Tags.extend({
     _tagName: 'data',
-    _tagSet: TagSet_Data
+    _tagSet: TagSet_Data,
+    _params: null,
+    init: function(){
+      this._super()
+      this._params.id = new TextValue(20,'Id')
+    }
 })
 
 var Tag_link = Tags.extend({
     _tagName: 'link',
-    _tagSet: TagSet_Nav
+    _tagSet: TagSet_Nav,
+    _params: null,
+    init: function(){
+      this._super()
+      this._params.dato1= new TextValue(10,'Dato1')
+      this._params.dato2= new TextValue(20,'Dato2'),
+      this._params.dato3= new TextValue(5,'Dato3')
+    }
 });
 
 var Tag_node = Tags.extend({
     _tagName: 'node',
-    _tagSet: TagSet_Nav
+    _tagSet: TagSet_Nav,
+    _params: null,
+    init: function(){
+      this._super()
+      this._params.dato1 = new TextValue(10,'Dato1')
+    }
 });

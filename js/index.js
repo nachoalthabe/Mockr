@@ -10,6 +10,7 @@ yepnope([{
     load: [
     'js/WebSpec/Widgets.js',
     'js/WebSpec/Tags.js',
+    'js/WebSpec/DataTypes.js',
     'js/WebSpec/Visitors.js',
     'js/WebSpec/ParserHTML.js',
     'js/ide/tagListBox.js',
