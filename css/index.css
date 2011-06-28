@@ -110,3 +110,15 @@ body{
 #tspTagEditor{
     border: 1px solid #000;
 }
+#tspTagEditor{
+  background: #FFF;
+}
+.dt_textValue{
+  border-bottom: 1px dotted #666;
+}
+.addTagBtn{
+  margin: 5px auto;
+}
+.dt_textValue input{
+  width: 100px;
+}

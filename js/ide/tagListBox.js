@@ -70,7 +70,6 @@ tagListBoxItems = Class.extend({
     _dom: null,
     _tag: null,
     init: function(widget,tag,tagEditor){
-        console.log('new tagListBoxItems',widget,',',tag)
         this._tag = tag
         this._widget = widget
         this._tagEditor = tagEditor
@@ -87,22 +86,25 @@ tagListBoxItems = Class.extend({
         }).data('tagName',tag).change($.proxy(this.tagSelectionChange,this))
         this._dom = $('<div>').append(this._item,this._itemTitle,this._itemChkBox)
         if(this._widget.hasTag(tag)){
-          this._itemChkBox.attr('checked',true)
+          var tmp = $('<a class="tlbiChkBox" href="#">edit</a>').click($.proxy(this.tagEdit,this))
+          this._itemChkBox.replaceWith(tmp)
+          this._itemChkBox = tmp
+          this._tag = this._widget.getTag(tag)
       }else{
         this._itemChkBox.attr('checked',false)
       }
-      console.log('new tagListBoxItems end')
     },
     tagSelectionChange: function(event){
         elem = this._itemChkBox;
         tagName = elem.data('tagName');
         if(elem.attr('checked')){
             this._tag = eval('new Tag_'+tagName+'()');
+            this._itemChkBox.html('')
             if(this._tagEditor.show(this._tag,elem)){
                 this._widget.addTag(this._tag)
-                if(this.widget.addTag(tag)){
-                    console.log("Tag agregado con exito.");
-                }
+                var tmp = $('<a class="tlbiChkBox" href="#">edit</a>').click($.proxy(this.tagEdit,this))
+                this._itemChkBox.replaceWith(tmp)
+                this._itemChkBox = tmp
             }
                 elem.attr('checked',false)
         }else{
@@ -112,7 +114,10 @@ tagListBoxItems = Class.extend({
         }
     },
     draw: function(container){
-      console.log('Draw:',container)
-            container.append(this._dom)
+      container.append(this._dom)
+    },
+    tagEdit: function(){
+      elem = this._itemChkBox;
+      this._tagEditor.show(this._tag,elem)
     }
 })

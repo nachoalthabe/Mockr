@@ -9,7 +9,7 @@ var tagEditor = Class.extend({
 		    }).mousedown($.proxy(this.hide,this)))
 		  //Creo un manejador de lista de tags...
       this._container = $('<div>').addClass('tspContent')
-      this._submitBtn = $('<div>').append($('<input>').attr({
+      this._submitBtn = $('<div class="addTagBtn">').append($('<input>').attr({
 	      type: 'button',
 	      value: 'Add'
 	    }).mousedown($.proxy(this.addTag,this)))
@@ -30,7 +30,7 @@ var tagEditor = Class.extend({
         this._title.text(tag.toString())
         this.renderParams()
         this._dom.show()
-        return false
+        return true
     },
     getTag: function(){
         return this._tag
@@ -50,6 +50,6 @@ var tagEditor = Class.extend({
       }
     },
     addTag: function(){
-      alert('Aca!')
+      
     }
 })

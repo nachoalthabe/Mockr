@@ -9,11 +9,12 @@ var TextValue = DataType.extend({
     this._label = label
   },
   render: function(container){
-    this._dom = $('<div>')
-    this._label = $('<label>').text(this._label+':')
+    this._dom = $('<div>').addClass('dt_textValue')
+    this._labelDom = $('<label>').text(this._label+':')
     this._input = $('<input>').attr({
       type: 'text',
-      maxlength: this._size
+      maxlength: this._size,
+      value: this._value
     }).change($.proxy(this._persist,this));
     this._dom.append(this._label,this._input)
     container.append(this._dom)
