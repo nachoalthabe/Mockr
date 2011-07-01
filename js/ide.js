@@ -71,6 +71,7 @@ boxMouseEvents = {
     addTag: function(event){
         elem = $(event.target)
         mkElem = elem.data('ws')
+        console.log(mkElem)
         tagSelector.show(mkElem)
     },
     editTag: function(event){

@@ -16,10 +16,14 @@ tagListBox = Class.extend({
 		  }).mousedown($.proxy(this.hide,this)))
 		  //Agrego el tag editor
       tagEditorContainer = $('<div>').attr('id','tspTagEditor').hide()
-      this._tagEditor = new tagEditor(tagEditorContainer)
+      this._tagEditor = new tagEditor(this,tagEditorContainer)
 		  //Creo un manejador de lista de tags...
 		  this._container = $('<div>').attr('id','tspContent')
-      this._dom.append(this._title,this._closeBtn,this._container,tagEditorContainer)
+		  this._submitBtn = $('<div class="addTagBtn">').append($('<input>').attr({
+	      type: 'button',
+	      value: 'Ok'
+	    }).mousedown($.proxy(this.submit,this)))
+      this._dom.append(this._title,this._closeBtn,this._container,tagEditorContainer,this._submitBtn)
       //Seteando los accesors a widget
       this.__defineGetter__("widget",this.getWidget)
       this.__defineSetter__("widget",this.setWidget)
@@ -37,7 +41,6 @@ tagListBox = Class.extend({
     },
     drawItems: function(){
         auxItems = new Array()
-        console.log('drawItems:',this._tags)
         locWidget = this.widget
         locTagEditor = this._tagEditor
         this._tags.forEach(function(tag){
@@ -50,7 +53,6 @@ tagListBox = Class.extend({
         auxItems.forEach(function(item){
           item.draw(auxContainer)
         })
-        console.log(auxContainer)
     },
     show: function(widget){
         this.widget = widget;
@@ -62,6 +64,9 @@ tagListBox = Class.extend({
     },
     hide: function(event){
         this._dom.hide()
+    },
+    submit: function(){
+      this.hide()
     }
 })
 

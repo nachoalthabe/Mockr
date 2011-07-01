@@ -1,5 +1,6 @@
 var tagEditor = Class.extend({
-    init: function(container){
+    init: function(parent,container){
+        this._parent = parent
         this._dom = $(container)
         this._dom.css('position','absolute')
         this._title = $('<div>').attr('id','tspTitle')
@@ -44,12 +45,11 @@ var tagEditor = Class.extend({
     renderParams: function(){
       this._container.html('')
       params = this._tag.getParams()
-      console.log(params)
       for(var param in params){
         params[param].render(this._container)
       }
     },
     addTag: function(){
-      
+      this.hide()
     }
 })
