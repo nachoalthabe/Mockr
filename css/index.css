@@ -50,7 +50,6 @@ body{
     display: none;
 }
 #tagSelectionPanel #tspClose{
-    z-index: 1001;
     right: -8px;
     top: -8px;
     cursor: pointer;
@@ -77,35 +76,38 @@ body{
     border-radius: 0px 5px 5px 0px;
     float: left;
     padding: 0px 1px;
-    border: 1px solid #000;
     font: 10px normal Arial;
 }
 .tlbiItem{
-    padding: 5px 10px;
-    border-bottom: 1px solid #eee;
-}
-.tlbiTitle{
-    width: 100px;
-    display: inline;
-}
-.tlbiTitle span{
-    font-size: 16px;
-}
-.tlbiChkBox{
-    float: right;
-    right: 5px;
-}
-.tlbiTitle div.tagSet{
-    width: 5px;
-    height: 19px;
-    margin-right: 5px;
+    padding: 0px 3px;
+    margin: 3px 3px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     float: left;
+    border: 1px solid #BBB;
+    cursor: pointer;
 }
-.tlbiTitle div.data{
-    background: #FF0000;
+.tlbiItem.over{
+  background: #EEE;
 }
-.tlbiTitle div.nav{
-    background: #00FF00;
+.tlbiItem.apply{
+  border-right: 3px solid #000;
+}
+.tlbiItem.data{
+  -webkit-box-shadow: 0 0 2px url(255,0,);
+  -moz-box-shadow: 0 0 2px #FF0000;
+  box-shadow: 0 0 2px #FF0000;
+}
+.tlbiItem.nav{
+  -webkit-box-shadow: 0 0 2px #00FF00;
+  -moz-box-shadow: 0 0 2px #00FF00;
+  box-shadow: 0 0 2px #00FF00;
+}
+.tagApply.data{
+  background: #FF0000;
+}
+.tagApply.nav{
+  background: #00FF00;
 }
 #tspTagEditor{
     border: 1px solid #000;
@@ -121,4 +123,10 @@ body{
 }
 .dt_textValue input{
   width: 100px;
+}
+.tagApply{
+  border:1px solid #DDD;
+  float: left;
+  padding: 1px 2px;
+  margin: 2px;
 }

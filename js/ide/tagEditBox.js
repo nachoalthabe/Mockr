@@ -3,7 +3,6 @@ var tagEditor = Class.extend({
         this._parent = parent
         this._dom = $(container)
         this._dom.css('position','absolute')
-        this._title = $('<div>').attr('id','tspTitle')
         this._closeBtn = $('<div>').attr('id','tspClose').append($('<img>').attr({
 			    src: 'images/close.png',
 			    alt: 'Close tag edit box'
@@ -14,21 +13,19 @@ var tagEditor = Class.extend({
 	      type: 'button',
 	      value: 'Add'
 	    }).mousedown($.proxy(this.addTag,this)))
-      this._dom.append(this._title,this._closeBtn,this._container,this._submitBtn)
+      this._dom.append(this._closeBtn,this._container,this._submitBtn)
       //Seteando los accesors al tag
       this.__defineGetter__("tag",this.getTag)
       this.__defineSetter__("tag",this.setTag)
     },
     show: function(tag,dom){
         this._tag = tag
-        cOff = dom.offset()
         cPos = dom.position()
         //@TODO: Para mas adelante...
         //this._dom.css('top',this.fnPosition.top())
         //this._dom.css('left',this.fnPosition.left())
         this._dom.css('top',cPos.top)//TODO: Que tome el contexto
-        this._dom.css('left',cPos.left)//TODO: Que tome el contexto
-        this._title.text(tag.toString())
+        this._dom.css('left',cPos.left+dom.outerWidth())//TODO: Que tome el contexto
         this.renderParams()
         this._dom.show()
         return true
@@ -40,7 +37,10 @@ var tagEditor = Class.extend({
         this._tag = tag
     },
     hide: function(event){
-        this._dom.hide()
+      for(var param in params){
+        params[param].persist()
+      }
+      this._dom.hide()
     },
     renderParams: function(){
       this._container.html('')
@@ -51,5 +51,6 @@ var tagEditor = Class.extend({
     },
     addTag: function(){
       this.hide()
+      this._parent._widget.addTag(this._tag)
     }
 })

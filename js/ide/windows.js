@@ -23,5 +23,5 @@ var Window = Class.extend({
     //Seteando los accesors a widget
     this.__defineGetter__("widget",this.getWidget)
     this.__defineSetter__("widget",this.setWidget)
-  },
+  }
 })

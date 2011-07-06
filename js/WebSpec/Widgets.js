@@ -73,6 +73,7 @@ var Widget = Class.extend({
     addTag: function(tag){
         if(this.isValidTag(tag) && !this.hasTag(tag.getTagName())){
             this._tags.push(tag);
+            tag.draw(this._domElem.children('.tagsContainer'))
             return true;
         }else{
             return false;

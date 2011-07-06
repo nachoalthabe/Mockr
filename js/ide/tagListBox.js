@@ -1,6 +1,5 @@
 tagListBox = Class.extend({
     _dom: null,
-    _title: null,
     _container: null,
     _closeBtn: null,
     _tags: null,
@@ -9,7 +8,6 @@ tagListBox = Class.extend({
     _widget: null,
     init: function(container){
       this._dom = $(container)
-      this._title = $('<div>').attr('id','tspTitle')
       this._closeBtn = $('<div>').attr('id','tspClose').append($('<img>').attr({
 			  src: 'images/close.png',
 			  alt: 'Close tag list box'
@@ -19,11 +17,7 @@ tagListBox = Class.extend({
       this._tagEditor = new tagEditor(this,tagEditorContainer)
 		  //Creo un manejador de lista de tags...
 		  this._container = $('<div>').attr('id','tspContent')
-		  this._submitBtn = $('<div class="addTagBtn">').append($('<input>').attr({
-	      type: 'button',
-	      value: 'Ok'
-	    }).mousedown($.proxy(this.submit,this)))
-      this._dom.append(this._title,this._closeBtn,this._container,tagEditorContainer,this._submitBtn)
+      this._dom.append(this._closeBtn,this._container,tagEditorContainer)
       //Seteando los accesors a widget
       this.__defineGetter__("widget",this.getWidget)
       this.__defineSetter__("widget",this.setWidget)
@@ -58,11 +52,11 @@ tagListBox = Class.extend({
         this.widget = widget;
         this._dom.css('top',widget.y+31)
         this._dom.css('left',widget.x+widget.width+2)
-        this._title.text(widget.getId())
         this.drawItems()
         this._dom.show()
     },
     hide: function(event){
+        this._tagEditor.hide()
         this._dom.hide()
     },
     submit: function(){
@@ -73,56 +67,41 @@ tagListBox = Class.extend({
 tagListBoxItems = Class.extend({
     _widget: null,
     _dom: null,
+    _tagName: null,
     _tag: null,
     init: function(widget,tag,tagEditor){
-        this._tag = tag
+        this._tagName = tag
         this._widget = widget
         this._tagEditor = tagEditor
-        this._item = $('<div>').addClass('tlbiItem')
-        this._itemTitle = $('<div>').addClass('tlbiTitle').append(
-          $('<div>').addClass(
-            'tagSet '+TagsDictionary[tag].tagSet.name
-          ),
+        this._dom = $('<div>').addClass('tlbiItem').append(
           $('<span>').addClass('tlbiTitle').text(tag)
-        )
-        this._itemChkBox = $('<input>').attr({
-          type: 'checkbox',
-          class: 'tlbiChkBox'
-        }).data('tagName',tag).change($.proxy(this.tagSelectionChange,this))
-        this._dom = $('<div>').append(this._item,this._itemTitle,this._itemChkBox)
+        ).data('tagName',this._tagName).bind({
+          click: $.proxy(this.tagSelectionChange,this),
+          mouseover: $.proxy(this.tagOver,this),
+          mouseleave: $.proxy(this.tagLive,this)
+        }).addClass(TagsDictionary[this._tagName].tagSet._name)
         if(this._widget.hasTag(tag)){
-          var tmp = $('<a class="tlbiChkBox" href="#">edit</a>').click($.proxy(this.tagEdit,this))
-          this._itemChkBox.replaceWith(tmp)
-          this._itemChkBox = tmp
+          this._dom.addClass('edit')
           this._tag = this._widget.getTag(tag)
-      }else{
-        this._itemChkBox.attr('checked',false)
-      }
+        }
     },
     tagSelectionChange: function(event){
-        elem = this._itemChkBox;
-        tagName = elem.data('tagName');
-        if(elem.attr('checked')){
-            this._tag = eval('new Tag_'+tagName+'()');
-            this._itemChkBox.html('')
-            if(this._tagEditor.show(this._tag,elem)){
-                this._widget.addTag(this._tag)
-                var tmp = $('<a class="tlbiChkBox" href="#">edit</a>').click($.proxy(this.tagEdit,this))
-                this._itemChkBox.replaceWith(tmp)
-                this._itemChkBox = tmp
-            }
-                elem.attr('checked',false)
-        }else{
-            //console.log('des-marcado!',elem.data('tagName'))
-            if(!this._widget.removeTag(tagName))
-                elem.attr('checked',true)
+        if(!this._tag){
+            this._tag = eval('new Tag_'+this._tagName+'()');
         }
+        this._dom.addClass('apply')
+        this._tagEditor.show(this._tag,elem)
     },
     draw: function(container){
       container.append(this._dom)
     },
     tagEdit: function(){
-      elem = this._itemChkBox;
-      this._tagEditor.show(this._tag,elem)
+      this._tagEditor.show(this._tag,this._dom)
+    },
+    tagOver: function(){
+      elem = this._dom.addClass('over');
+    },
+    tagLive: function(){
+      elem = this._dom.removeClass('over');
     }
 })

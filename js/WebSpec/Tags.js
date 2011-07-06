@@ -47,6 +47,7 @@ var TagsDictionary = {
 var Tags = Class.extend({
     _tagName: 'tags',
     _params: null,
+    _dom: null,
     init: function(){
       this._params = {}
     },
@@ -58,6 +59,16 @@ var Tags = Class.extend({
     },
     getParams: function(){
       return this._params
+    },
+    draw: function(container){
+      console.log(this._tagSet)
+      this._dom = $('<div>').addClass('tagApply',this._tagSet.name).text(
+        this._tagName+'('+this.getMainProperty()+')'
+      )
+      container.append(this._dom)
+    },
+    destroy: function(){
+      this._dom.destroy()
     }
 });
 
@@ -66,14 +77,17 @@ var Tag_id = Tags.extend({
   _tagSet: TagSet_Data,
   init: function(id){
     this._super()
-    this._params.id = new TextValue(20)
+    this._params['id'] = new TextValue(20)
     this.setId(id)
   },
   getId: function(){
-    return this._params.id.getValue()
+    return this._params['id'].getValue()
   },
   setId: function(id){
     this._params['id'].setValue(id)
+  },
+  getMainProperty: function(){
+    return this._params.id.getValue()
   }
 })
 
@@ -83,7 +97,10 @@ var Tag_data = Tags.extend({
     _params: null,
     init: function(){
       this._super()
-      this._params.id = new TextValue(20,'Id')
+      this._params['id'] = new TextValue(20,'Id')
+    },
+    getMainProperty: function(){
+      return this._params.id.getValue()
     }
 })
 
@@ -96,6 +113,9 @@ var Tag_link = Tags.extend({
       this._params.dato1= new TextValue(10,'Dato1')
       this._params.dato2= new TextValue(20,'Dato2'),
       this._params.dato3= new TextValue(5,'Dato3')
+    },
+    getMainProperty: function(){
+      return this._params.dato1.getValue()
     }
 });
 
@@ -106,5 +126,8 @@ var Tag_node = Tags.extend({
     init: function(){
       this._super()
       this._params.dato1 = new TextValue(10,'Dato1')
+    },
+    getMainProperty: function(){
+      return this._params.dato1.getValue()
     }
 });
