@@ -61,7 +61,7 @@ var Tags = Class.extend({
       return this._params
     },
     draw: function(container){
-      console.log(this._tagSet)
+      console.log('aca!',this._tagSet)
       this._dom = $('<div>').addClass('tagApply',this._tagSet.name).text(
         this._tagName+'('+this.getMainProperty()+')'
       )
