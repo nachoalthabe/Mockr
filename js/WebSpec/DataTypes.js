@@ -1,17 +1,21 @@
 var DataType = Class.extend({
-    
+    _tag: null,
+    init: function(tag){
+      this._tag = tag
+    }
 })
 
 var TextValue = DataType.extend({
   _value: null,
-  init: function(size,label){
+  init: function(tag,size,label){
+    this._super(tag)
     this._size = size
     this._label = label
   },
   render: function(container){
     if(!this._dom){
       this._dom = $('<div>').addClass('dt_textValue')
-      this._labelDom = $('<label>').text(this._label+':')
+      this._label = $('<div>').text(this._label+':')
       this._input = $('<input>').attr({
         type: 'text',
         maxlength: this._size,
@@ -27,11 +31,15 @@ var TextValue = DataType.extend({
       return
     }
     this._value = value
+    this._tag.update()
   },
   getValue: function(){
     return this._value
   },
   persist: function(){
     this.setValue(this._input.val())
+  },
+  width: function(){
+	return this._label.width()+this._input.width()
   }
 })

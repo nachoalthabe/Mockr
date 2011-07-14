@@ -48,7 +48,9 @@ var Tags = Class.extend({
     _tagName: 'tags',
     _params: null,
     _dom: null,
-    init: function(){
+    _widget: null,
+    init: function(widget){
+      this._widget = widget
       this._params = {}
     },
     getTagName: function(){
@@ -62,10 +64,16 @@ var Tags = Class.extend({
     },
     draw: function(container){
       console.log('aca!',this._tagSet)
-      this._dom = $('<div>').addClass('tagApply',this._tagSet.name).text(
+      if(!this._dom){
+        this._dom = $('<div>').addClass('tagApply',this._tagSet.name)
+        container.append(this._dom)
+      }
+      this._dom.text(
         this._tagName+'('+this.getMainProperty()+')'
       )
-      container.append(this._dom)
+    },
+    update: function(){
+      this.draw(this._dom.parent())
     },
     destroy: function(){
       this._dom.destroy()
@@ -77,7 +85,7 @@ var Tag_id = Tags.extend({
   _tagSet: TagSet_Data,
   init: function(id){
     this._super()
-    this._params['id'] = new TextValue(20)
+    this._params['id'] = new TextValue(this,20,'id')
     this.setId(id)
   },
   getId: function(){
@@ -97,7 +105,7 @@ var Tag_data = Tags.extend({
     _params: null,
     init: function(){
       this._super()
-      this._params['id'] = new TextValue(20,'Id')
+      this._params['id'] = new TextValue(this,20,'Id')
     },
     getMainProperty: function(){
       return this._params.id.getValue()
@@ -110,9 +118,9 @@ var Tag_link = Tags.extend({
     _params: null,
     init: function(){
       this._super()
-      this._params.dato1= new TextValue(10,'Dato1')
-      this._params.dato2= new TextValue(20,'Dato2'),
-      this._params.dato3= new TextValue(5,'Dato3')
+      this._params.dato1= new TextValue(this,10,'Dato1')
+      this._params.dato2= new TextValue(this,20,'Dato2'),
+      this._params.dato3= new TextValue(this,5,'Dato3')
     },
     getMainProperty: function(){
       return this._params.dato1.getValue()
@@ -125,7 +133,7 @@ var Tag_node = Tags.extend({
     _params: null,
     init: function(){
       this._super()
-      this._params.dato1 = new TextValue(10,'Dato1')
+      this._params.dato1 = new TextValue(this,10,'Dato1')
     },
     getMainProperty: function(){
       return this._params.dato1.getValue()

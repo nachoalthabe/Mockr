@@ -9,10 +9,6 @@ var tagEditor = Class.extend({
 		    }).mousedown($.proxy(this.hide,this)))
 		  //Creo un manejador de lista de tags...
       this._container = $('<div>').addClass('tspContent')
-      this._submitBtn = $('<div class="addTagBtn">').append($('<input>').attr({
-	      type: 'button',
-	      value: 'Add'
-	    }).mousedown($.proxy(this.addTag,this)))
       this._dom.append(this._closeBtn,this._container,this._submitBtn)
       //Seteando los accesors al tag
       this.__defineGetter__("tag",this.getTag)
@@ -25,7 +21,7 @@ var tagEditor = Class.extend({
         //this._dom.css('top',this.fnPosition.top())
         //this._dom.css('left',this.fnPosition.left())
         this._dom.css('top',cPos.top)//TODO: Que tome el contexto
-        this._dom.css('left',cPos.left+dom.outerWidth())//TODO: Que tome el contexto
+        this._dom.css('left',cPos.left)//TODO: Que tome el contexto
         this.renderParams()
         this._dom.show()
         return true
@@ -45,9 +41,14 @@ var tagEditor = Class.extend({
     renderParams: function(){
       this._container.html('')
       params = this._tag.getParams()
+      this._maxItemsWidth = 0
       for(var param in params){
         params[param].render(this._container)
+        if(this._maxItemsWidth<params[param].width()){
+          this._maxItemsWidth = params[param].width()
+        }
       }
+      this._dom.width(this._maxItemsWidth)
     },
     addTag: function(){
       this.hide()

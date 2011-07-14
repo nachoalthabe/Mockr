@@ -21,4 +21,10 @@ yepnope([{
     complete: function(){
         loadExampleHtml('login');
     }
-}]);
+},{
+  //CSS
+  load: [
+    'css/index.css',
+    'css/ide.css'
+  ]}
+])

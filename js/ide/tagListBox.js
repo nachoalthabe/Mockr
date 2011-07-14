@@ -88,6 +88,7 @@ tagListBoxItems = Class.extend({
     tagSelectionChange: function(event){
         if(!this._tag){
             this._tag = eval('new Tag_'+this._tagName+'()');
+            this._widget.addTag(this._tag)
         }
         this._dom.addClass('apply')
         this._tagEditor.show(this._tag,elem)
