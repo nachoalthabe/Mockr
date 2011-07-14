@@ -18,3 +18,19 @@
   float: rigth;
   display: table-cell;
 }
+.tlbiItem.data{
+  -webkit-box-shadow: 0 0 2px url(255,0,);
+  -moz-box-shadow: 0 0 2px #FF0000;
+  box-shadow: 0 0 2px #FF0000;
+}
+.tlbiItem.nav{
+  -webkit-box-shadow: 0 0 2px #00FF00;
+  -moz-box-shadow: 0 0 2px #00FF00;
+  box-shadow: 0 0 2px #00FF00;
+}
+.tagApply.data{
+  background: url('../images/ide/dt_data.png');
+}
+.tagApply.nav{
+  background: url('../images/ide/dt_nav.png');
+}

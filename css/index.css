@@ -93,22 +93,6 @@ body{
 .tlbiItem.apply{
   border-right: 3px solid #000;
 }
-.tlbiItem.data{
-  -webkit-box-shadow: 0 0 2px url(255,0,);
-  -moz-box-shadow: 0 0 2px #FF0000;
-  box-shadow: 0 0 2px #FF0000;
-}
-.tlbiItem.nav{
-  -webkit-box-shadow: 0 0 2px #00FF00;
-  -moz-box-shadow: 0 0 2px #00FF00;
-  box-shadow: 0 0 2px #00FF00;
-}
-.tagApply.data{
-  background: #FF0000;
-}
-.tagApply.nav{
-  background: #00FF00;
-}
 #tspTagEditor{
     border: 1px solid #000;
 }

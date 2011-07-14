@@ -33,13 +33,19 @@ tagListBox = Class.extend({
        this._tags = widget.getValidTags()
        this._container.widget = widget;
     },
+    showClose: function(){
+      this._closeBtn.show()
+    },
+    hideClose: function(){
+      this._closeBtn.hide()
+    },
     drawItems: function(){
         auxItems = new Array()
         locWidget = this.widget
         locTagEditor = this._tagEditor
         this._tags.forEach(function(tag){
           console.log('Agregando tag:'+tag)
-          item = new tagListBoxItems(locWidget,tag,locTagEditor)
+          item = new tagListBoxItems(this,locWidget,tag,locTagEditor)
           auxItems.push(item)
         })
         this._items = auxItems
@@ -69,7 +75,8 @@ tagListBoxItems = Class.extend({
     _dom: null,
     _tagName: null,
     _tag: null,
-    init: function(widget,tag,tagEditor){
+    init: function(parent,widget,tag,tagEditor){
+        this._parent = parent
         this._tagName = tag
         this._widget = widget
         this._tagEditor = tagEditor
@@ -81,16 +88,19 @@ tagListBoxItems = Class.extend({
           mouseleave: $.proxy(this.tagLive,this)
         }).addClass(TagsDictionary[this._tagName].tagSet._name)
         if(this._widget.hasTag(tag)){
-          this._dom.addClass('edit')
+          this._dom.addClass('apply')
           this._tag = this._widget.getTag(tag)
         }
     },
     tagSelectionChange: function(event){
         if(!this._tag){
             this._tag = eval('new Tag_'+this._tagName+'()');
+            console.log('tagSelectionChange',this)
             this._widget.addTag(this._tag)
         }
         this._dom.addClass('apply')
+        console.log('tagSelectionChange',this)
+        this._tagEditor._parent.hideClose()
         this._tagEditor.show(this._tag,elem)
     },
     draw: function(container){

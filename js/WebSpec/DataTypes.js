@@ -6,7 +6,7 @@ var DataType = Class.extend({
 })
 
 var TextValue = DataType.extend({
-  _value: null,
+  _value: '',
   init: function(tag,size,label){
     this._super(tag)
     this._size = size
@@ -31,7 +31,7 @@ var TextValue = DataType.extend({
       return
     }
     this._value = value
-    this._tag.update()
+    this._tag.draw()
   },
   getValue: function(){
     return this._value

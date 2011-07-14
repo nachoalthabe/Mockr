@@ -72,12 +72,35 @@ var Widget = Class.extend({
     },
     addTag: function(tag){
         if(this.isValidTag(tag) && !this.hasTag(tag.getTagName())){
-            this._tags.push(tag);
+            this._tags.push(tag)
+            tag.setWidget(this)
+            //this.sendTagToServer(tag)
             tag.draw(this._domElem.children('.tagsContainer'))
             return true;
         }else{
             return false;
         }
+    },
+    sendTagToServer: function(tag){
+      $.ajax({
+        url: Config.serveUrl,
+        data: {
+          opt: 'addTag',
+          tag: {
+            uiId: Context.uiId,
+            widgetId: this.getId(),
+            tag: tag.getTagName(),
+            tagSet: tag._tagSet.name,
+            params: tag.getParamsArray()
+          }
+        },
+        success: function(){
+          $(this).addClass("done");
+        }
+      })
+    },
+    tagUpdated: function(tag){
+      this.sendTagToServer(tag)
     },
     getTag: function(tagName){
         var len=this._tags.length;

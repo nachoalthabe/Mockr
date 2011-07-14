@@ -62,15 +62,30 @@ var Tags = Class.extend({
     getParams: function(){
       return this._params
     },
+    getParamsArray: function(){
+      console.log(this._params)
+      var result = new Array()
+      for(i in this._params){
+        result.push(this._params[i].getValue())
+      }
+      return result
+    },
     draw: function(container){
-      console.log('aca!',this._tagSet)
+      console.log(this._tagSet)
       if(!this._dom){
-        this._dom = $('<div>').addClass('tagApply',this._tagSet.name)
-        container.append(this._dom)
+        this._dom = $('<div>').addClass('tagApply ' + this._tagSet.name)
       }
       this._dom.text(
         this._tagName+'('+this.getMainProperty()+')'
       )
+      if(container){
+        container.append(this._dom)
+      }
+      console.log('aca!',this)
+      this._widget.tagUpdated(this)
+    },
+    setWidget: function(widget){
+      this._widget = widget
     },
     update: function(){
       this.draw(this._dom.parent())
@@ -83,8 +98,8 @@ var Tags = Class.extend({
 var Tag_id = Tags.extend({
   _tagName: 'id',
   _tagSet: TagSet_Data,
-  init: function(id){
-    this._super()
+  init: function(widget,id){
+    this._super(widget)
     this._params['id'] = new TextValue(this,20,'id')
     this.setId(id)
   },
@@ -103,8 +118,8 @@ var Tag_data = Tags.extend({
     _tagName: 'data',
     _tagSet: TagSet_Data,
     _params: null,
-    init: function(){
-      this._super()
+    init: function(widget){
+      this._super(widget)
       this._params['id'] = new TextValue(this,20,'Id')
     },
     getMainProperty: function(){
@@ -116,8 +131,8 @@ var Tag_link = Tags.extend({
     _tagName: 'link',
     _tagSet: TagSet_Nav,
     _params: null,
-    init: function(){
-      this._super()
+    init: function(widget){
+      this._super(widget)
       this._params.dato1= new TextValue(this,10,'Dato1')
       this._params.dato2= new TextValue(this,20,'Dato2'),
       this._params.dato3= new TextValue(this,5,'Dato3')
@@ -131,8 +146,8 @@ var Tag_node = Tags.extend({
     _tagName: 'node',
     _tagSet: TagSet_Nav,
     _params: null,
-    init: function(){
-      this._super()
+    init: function(widget){
+      this._super(widget)
       this._params.dato1 = new TextValue(this,10,'Dato1')
     },
     getMainProperty: function(){

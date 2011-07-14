@@ -1,4 +1,4 @@
-debug = false;
+debug = true;
 var Visitor = Class.extend({
     _widget: null,
     _doit: null,
@@ -84,35 +84,6 @@ var Drawer = Visitor.extend({
         div.mousedown(boxMouseEvents.down);
         elem.setDomElem(div);
         div.data('ws',elem);
-        return div;
-    },
-    visitUI: function(){
-        //do nothing
-        return;
-    }
-})
-
-var TagDrawer = Visitor.extend({
-    init: function(ui,canvas){
-        if(ui instanceof UI){
-            this._ui = ui;
-        }else{
-            throw('El UI no es valido.');
-        }
-        this._super(ui,this.draw);
-    },
-    draw: function(elem){
-        var div = null,
-        tags = elem.getTags(),
-        dom = elem.getDomElem().children('.tagsContainer').empty();
-
-        tags.forEach(function(tag){
-            div = $('<div>');
-            div.text(tag.getTagName());
-            div.addClass('tagLabel');
-            div.data('tg',tag);
-            dom.append(div);
-        })
         return div;
     },
     visitUI: function(){

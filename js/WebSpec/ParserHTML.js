@@ -36,7 +36,7 @@ function parseHTML(tree){
                 component = eval('new '+tree.type+'('+[id,x,y,width,height].join(',')+')');
                 break;
         }
-        component.addTag(new Tag_id(id));
+        component.addTag(new Tag_id(component,id));
         if(tree.items != undefined){
             tree.items.forEach(function(item){
                 component.addSubControl(parseHTML(item));

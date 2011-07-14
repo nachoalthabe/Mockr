@@ -37,6 +37,7 @@ var tagEditor = Class.extend({
         params[param].persist()
       }
       this._dom.hide()
+      this._parent.showClose()
     },
     renderParams: function(){
       this._container.html('')

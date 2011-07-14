@@ -1,3 +1,11 @@
+var Config = {
+  serveUrl: "/srv.php"
+}
+
+var Context = {
+  uiId: 'Test'
+}
+
 function loadExampleHtml(exampleName){
     var barrierVal = 2;//Cantidad de request
     var mHTML,mSchema;
@@ -33,7 +41,6 @@ function prepareIDE(mHTML,mSchema){
     canvas.html(mHTML);
     mockup.addSubControl(parseHTML(mSchema[0]));
     var drawer = new Drawer(mockup,$('#boxes'),false).doit();
-    tagDrawer = new TagDrawer(mockup).doit();
 }
 
 var currentId= 0;
@@ -57,12 +64,10 @@ boxMouseEvents = {
     over: function(event){
         elem = $(event.target)
         elem.addClass('activeBox')
-        elem.find('.addTagsButton').show()
     },
     leave: function(event){
         elem = $(event.target)
         elem.removeClass('activeBox')
-        elem.find('.addTagsButton').hide()
     },
     down: function(event){
         elem = $(event.target)
