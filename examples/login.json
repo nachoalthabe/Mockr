@@ -1,4 +1,8 @@
 [
+	{
+        "type": "Page",
+        "id": "htmlContainer",
+        "items": [
     {
         "type": "Panel",
         "id": "panelLogin",
@@ -43,4 +47,5 @@
             }
         ]
     }
+]}
 ]
