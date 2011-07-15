@@ -76,16 +76,20 @@ var Widget = Class.extend({
             tag.setWidget(this)
             //this.sendTagToServer(tag)
             tag.draw(this._domElem.children('.tagsContainer'))
+            this.sendTagToServer(tag)
             return true;
         }else{
             return false;
         }
     },
-    sendTagToServer: function(tag){
+    sendTagToServer: function(tag,remove){
+      if(!remove){
+        remove = false
+      }
       $.ajax({
         url: Config.serveUrl,
         data: {
-          opt: 'addTag',
+          opt: remove?'delTag':'addTag',
           tag: {
             uiId: Context.uiId,
             widgetId: this.getId(),
@@ -95,7 +99,9 @@ var Widget = Class.extend({
           }
         },
         success: function(){
-          $(this).addClass("done");
+          if(remove){
+            tag.destroy()
+          }
         }
       })
     },
@@ -119,7 +125,9 @@ var Widget = Class.extend({
             var len=this._tags.length;
             for(var i=0; i<len; i++) {
                 if(this._tags[i].getTagName() == tagName){
+                    var tag = this._tags[i]
                     this._tags.splice(i,1);
+                    this.sendTagToServer(tag,true)
                     return true;
                 }
             }

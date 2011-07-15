@@ -81,17 +81,20 @@ var Tags = Class.extend({
       if(container){
         container.append(this._dom)
       }
-      console.log('aca!',this)
-      this._widget.tagUpdated(this)
     },
     setWidget: function(widget){
       this._widget = widget
     },
+    getWidget: function(widget){
+      return this._widget
+    },
     update: function(){
       this.draw(this._dom.parent())
+      this._widget.tagUpdated(this)
     },
     destroy: function(){
-      this._dom.destroy()
+      this._dom.remove()
+      delete this
     }
 });
 

@@ -9,13 +9,19 @@ var tagEditor = Class.extend({
 		    }).mousedown($.proxy(this.hide,this)))
 		  //Creo un manejador de lista de tags...
       this._container = $('<div>').addClass('tspContent')
-      this._dom.append(this._closeBtn,this._container,this._submitBtn)
+      this._delBtn = $('<div class="tspDelBtn">').append(
+        $('<input type="button" value="borrar" />').bind({
+          click: ($.proxy(this.delTag,this))
+        })
+      )
+      this._dom.append(this._closeBtn,this._container,this._delBtn)
       //Seteando los accesors al tag
       this.__defineGetter__("tag",this.getTag)
       this.__defineSetter__("tag",this.setTag)
     },
-    show: function(tag,dom){
+    show: function(listItem,tag,dom){
         this._tag = tag
+        this._listItem = listItem
         cPos = dom.position()
         //@TODO: Para mas adelante...
         //this._dom.css('top',this.fnPosition.top())
@@ -25,6 +31,14 @@ var tagEditor = Class.extend({
         this.renderParams()
         this._dom.show()
         return true
+    },
+    delTag: function(){
+      if(!this._tag)
+        return false
+      var widget = this._tag.getWidget()
+      widget.removeTag(this._tag)
+      this._listItem.delTag()
+      this.hide()
     },
     getTag: function(){
         return this._tag

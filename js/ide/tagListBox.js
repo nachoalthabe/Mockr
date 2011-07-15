@@ -83,7 +83,7 @@ tagListBoxItems = Class.extend({
         this._dom = $('<div>').addClass('tlbiItem').append(
           $('<span>').addClass('tlbiTitle').text(tag)
         ).data('tagName',this._tagName).bind({
-          click: $.proxy(this.tagSelectionChange,this),
+          click: $.proxy(this.addTag,this),
           mouseover: $.proxy(this.tagOver,this),
           mouseleave: $.proxy(this.tagLive,this)
         }).addClass(TagsDictionary[this._tagName].tagSet._name)
@@ -92,7 +92,10 @@ tagListBoxItems = Class.extend({
           this._tag = this._widget.getTag(tag)
         }
     },
-    tagSelectionChange: function(event){
+    delTag: function(){
+      this._dom.removeClass('apply')
+    },
+    addTag: function(event){
         if(!this._tag){
             this._tag = eval('new Tag_'+this._tagName+'()');
             console.log('tagSelectionChange',this)
@@ -101,13 +104,13 @@ tagListBoxItems = Class.extend({
         this._dom.addClass('apply')
         console.log('tagSelectionChange',this)
         this._tagEditor._parent.hideClose()
-        this._tagEditor.show(this._tag,elem)
+        this._tagEditor.show(this,this._tag,elem)
     },
     draw: function(container){
       container.append(this._dom)
     },
     tagEdit: function(){
-      this._tagEditor.show(this._tag,this._dom)
+      this._tagEditor.show(this,this._tag,this._dom)
     },
     tagOver: function(){
       elem = this._dom.addClass('over');
