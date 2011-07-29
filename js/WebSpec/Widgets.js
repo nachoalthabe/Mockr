@@ -208,7 +208,7 @@ var Label = SimpleWidget.extend({
 });
 var Link = SimpleWidget.extend({
     _className : 'Link',
-    init: function(id, x, y, width, height, label){
+    init: function(id, x, y, width, height){
         this._super(id, x, y, width, height);
         this._validTags.push('link');
     },

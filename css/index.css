@@ -1,7 +1,6 @@
 body{
     margin: 0
 }
-
 #header{
     height: 30px;
     background: #356AA0;
@@ -12,18 +11,6 @@ body{
     color: #EEEEEE;
     position: relative;
     top: 5px;
-}
-#canvas{
-    width: 100%;
-    position: absolute;
-    top:30px;
-    left: 0px;
-}
-#boxes{
-    width: 100%;
-    position: absolute;
-    top:30px;
-    left: 0px;
 }
 #tagSelectionPanel{
     z-index: 1000;

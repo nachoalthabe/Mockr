@@ -1,11 +1,12 @@
+var mockr
 yepnope([{
-    //Libs
-    load: [
+  //Libs
+  load: [
     'js/lib/jquery.js',
     'js/sJSi.js',
     'js/extend.js'
     ]
-},{
+  },{
     //WebSpects
     load: [
     'js/WebSpec/Widgets.js',
@@ -15,16 +16,20 @@ yepnope([{
     'js/WebSpec/ParserHTML.js',
     'js/ide/tagListBox.js',
     'js/ide/tagEditBox.js',
-    'js/ide.js'
+    'js/Mockr.js'
     ],
     //Init general
     complete: function(){
-        loadExampleHtml('login');
+      $.ajax({
+          url: 'examples/google.json',
+          dataType: 'json',
+          success: function(data){
+              mockr = new Mockr({
+                container: $('#mockr'),
+                url: 'http://google.com/',
+                schema: data
+              })
+          }
+      })
     }
-},{
-  //CSS
-  load: [
-    'css/index.css',
-    'css/ide.css'
-  ]}
-])
+}])
