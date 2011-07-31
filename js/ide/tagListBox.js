@@ -64,7 +64,9 @@ tagListBox = Class.extend({
         this._dom.show()
     },
     hide: function(event){
+      if(this._tagEditor){
         this._tagEditor.hide()
+      }
         this._dom.hide()
     },
     submit: function(){

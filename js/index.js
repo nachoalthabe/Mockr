@@ -34,7 +34,7 @@ yepnope([{
           success: function(data){
             mockr = new Mockr({
               container: $('#mockr'),
-              url: 'http://google.com/',
+              url: 'http://google.com.ar/',
               schema: data
             })
           },

@@ -47,8 +47,10 @@ var tagEditor = Class.extend({
         this._tag = tag
     },
     hide: function(event){
-      for(var param in params){
-        params[param].persist()
+      if(this._tag){
+        for(var param in params){
+          params[param].persist()
+        }
       }
       this._dom.hide()
       this._parent.showClose()
