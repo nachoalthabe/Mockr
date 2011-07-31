@@ -1,4 +1,11 @@
 var mockr
+var Config = {
+  serveUrl: "/srv.php"
+}
+var Context = {
+  uiId: 'Test'
+}
+
 yepnope([{
   //Libs
   load: [
@@ -14,6 +21,7 @@ yepnope([{
     'js/WebSpec/DataTypes.js',
     'js/WebSpec/Visitors.js',
     'js/WebSpec/ParserHTML.js',
+    'js/WebSpec/Boxes.js',
     'js/ide/tagListBox.js',
     'js/ide/tagEditBox.js',
     'js/Mockr.js'
@@ -21,14 +29,16 @@ yepnope([{
     //Init general
     complete: function(){
       $.ajax({
-          url: 'examples/google.json',
+          url: 'examples/google.js',
           dataType: 'json',
           success: function(data){
-              mockr = new Mockr({
-                container: $('#mockr'),
-                url: 'http://google.com/',
-                schema: data
-              })
+            mockr = new Mockr({
+              container: $('#mockr'),
+              url: 'http://google.com/',
+              schema: data
+            })
+          },
+          error: function(ev){
           }
       })
     }

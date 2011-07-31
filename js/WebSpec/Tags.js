@@ -70,17 +70,14 @@ var Tags = Class.extend({
       }
       return result
     },
-    draw: function(container){
-      console.log(this._tagSet)
+    draw: function(){
       if(!this._dom){
         this._dom = $('<div>').addClass('tagApply ' + this._tagSet.name)
+        this._widget.box.tagsContainer.append(this._dom)
       }
       this._dom.text(
         this._tagName+'('+this.getMainProperty()+')'
       )
-      if(container){
-        container.append(this._dom)
-      }
     },
     setWidget: function(widget){
       this._widget = widget

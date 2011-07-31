@@ -6,8 +6,8 @@ tagListBox = Class.extend({
     _tagEditor: null,
     _items: null,
     _widget: null,
-    init: function(container){
-      this._dom = $(container)
+    init: function(){
+      this._dom = $('<div id="tagSelectionPanel">')
       this._closeBtn = $('<div>').attr('id','tspClose').append($('<img>').attr({
 			  src: 'images/close.png',
 			  alt: 'Close tag list box'
@@ -18,6 +18,7 @@ tagListBox = Class.extend({
 		  //Creo un manejador de lista de tags...
 		  this._container = $('<div>').attr('id','tspContent')
       this._dom.append(this._closeBtn,this._container,tagEditorContainer)
+      $(document.body).append(this._dom)
       //Seteando los accesors a widget
       this.__defineGetter__("widget",this.getWidget)
       this.__defineSetter__("widget",this.setWidget)
@@ -56,8 +57,9 @@ tagListBox = Class.extend({
     },
     show: function(widget){
         this.widget = widget;
-        this._dom.css('top',widget.y+31)
-        this._dom.css('left',widget.x+widget.width+2)
+        var offset = widget.dom.offset()
+        this._dom.css('top',offset.top+31)
+        this._dom.css('left',offset.left+widget.dom.width()+2)
         this.drawItems()
         this._dom.show()
     },
@@ -94,6 +96,7 @@ tagListBoxItems = Class.extend({
     },
     delTag: function(){
       this._dom.removeClass('apply')
+      delete this._tag
     },
     addTag: function(event){
         if(!this._tag){

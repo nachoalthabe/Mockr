@@ -17,16 +17,17 @@ var Widget = Class.extend({
     _tags: null,
     _tagsArray: null,
     _domElem: null,
-    init: function(id, x, y, width, height){
-        this.id = id;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this._tags = new Array();
-        this._tagsArray = [];
-        this._requiredTags = [];
-        this._validTags = [];
+    /*id, x, y, width, height*/
+    init: function(){
+        $.extend(this,arguments[0])
+        this._tags = new Array()
+        this._tagsArray = []
+        this._requiredTags = []
+        this._validTags = []
+        this._init()
+    },
+    _init: function(){
+      
     },
     toString: function(){
         return this._className
@@ -75,7 +76,7 @@ var Widget = Class.extend({
             this._tags.push(tag)
             tag.setWidget(this)
             //this.sendTagToServer(tag)
-            tag.draw(this._domElem.children('.tagsContainer'))
+            tag.draw(this.box.tagsContainer.children('.tagsContainer'))
             this.sendTagToServer(tag)
             return true;
         }else{
@@ -153,31 +154,28 @@ var Widget = Class.extend({
  * Segundo nivel de herencia
  */
 var SimpleWidget = Widget.extend({
-    _className : 'SimpleWidget',
-    init: function(id, x, y, width, height){
-        this._super(id, x, y, width, height);
-    }
+    _className : 'SimpleWidget'
 });
 var CompositeWidget = Widget.extend({
     _className : 'CompositeWidget',
-    _subControls: null,
+    _widgets: null,
     _i: 0,
-    init: function(id, x, y, width, height){
-        this._super(id, x, y, width, height);
-        this._subControls = new Array();
-        this._validTags.push('data');
+    init: function(opts){
+        this._widgets = new Array()
+        this._super(opts)
+        this._validTags.push('data')
     },
-    addSubControl: function(subcontrol){
-        if (!(subcontrol instanceof Widget)){
-            throw('El SubControl no es valido.');
+    addWidget: function(widget){
+        if (!(widget instanceof Widget)){
+            throw('El Widget no es valido.');
         }
         else{
-            this._subControls.push(subcontrol);
+            this._widgets.push(widget);
         }
     },
     evalFunc: function(fnName,params){
         this[fnName](params);
-        this._subControls.forEach(function(elem,key){
+        this._widgets.forEach(function(elem,key){
             elem.evalFunc(fnName,params);
         })
     }
@@ -198,8 +196,7 @@ var TextBox = SimpleWidget.extend({
 var Label = SimpleWidget.extend({
     _className : 'Label',
     label: '',
-    init: function(id, x, y, width, height, label){
-        this._super(id, x, y, width, height);
+    _init: function(){
         this.label = label;
     },
     _visit: function(v){
@@ -208,8 +205,7 @@ var Label = SimpleWidget.extend({
 });
 var Link = SimpleWidget.extend({
     _className : 'Link',
-    init: function(id, x, y, width, height){
-        this._super(id, x, y, width, height);
+    _init: function(){
         this._validTags.push('link');
     },
     _visit: function(v){
@@ -218,8 +214,7 @@ var Link = SimpleWidget.extend({
 });
 var Button = SimpleWidget.extend({
     _className : 'Button',
-    init: function(id, x, y, width, height){
-        this._super(id, x, y, width, height);
+    _init: function(){
         this._validTags.push('link');
     },
     _visit: function(v){
@@ -237,17 +232,13 @@ var CheckBox = SimpleWidget.extend({
  */
 var Panel = CompositeWidget.extend({
     _className : 'Panel',
-    init: function(id, x, y, width, height){
-        this._super(id, x, y, width, height);
-    },
     _visit: function(v){
         v.visitPanel(this);
     }
 });
 var Page = CompositeWidget.extend({
     _className : 'Page',
-    init: function(id, x, y, width, height){
-        this._super(id, x, y, width, height);
+    _init: function(){
         this._validTags.push('node');
     },
     _visit: function(v){
@@ -256,12 +247,6 @@ var Page = CompositeWidget.extend({
 });
 var Form = CompositeWidget.extend({
     _className : 'Form',
-    init: function(id, x, y, width, height, action, method){
-        this._super(id, x, y, width, height);
-        this._validTags.push();
-        this._action = action;
-        this._method = method;
-    },
     _visit: function(v){
         v.visitPanel(this);
     }
