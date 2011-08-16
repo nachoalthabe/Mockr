@@ -122,6 +122,8 @@ tagListBoxItems = Class.extend({
         }
         this._dom.addClass('apply')
         console.log('tagSelectionChange',this)
+        if(this._tag._params == false)
+          return
         this._tagEditor._parent.hideClose()
         this._tagEditor.show(this,this._tag,elem)
     },
