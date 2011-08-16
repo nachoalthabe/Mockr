@@ -29,3 +29,9 @@ TagSelectorWindow = Window.extend({
     
   }
 })
+
+TagEditWindow = Window.extend({
+  _init: function(){
+    
+  }
+})

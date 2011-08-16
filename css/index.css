@@ -36,12 +36,6 @@ body{
 #tagSelectionPanel #tspThemes{
     display: none;
 }
-#tagSelectionPanel #tspClose{
-    right: -8px;
-    top: -8px;
-    cursor: pointer;
-    position: absolute;
-}
 /*Boxes styles*/
 .addTagsButton{
     background: url('/images/plus.png') no-repeat;
@@ -58,15 +52,6 @@ body{
     float: left;
     padding: 0px 1px;
     font: 10px normal Arial;
-}
-.tlbiItem{
-    padding: 0px 3px;
-    margin: 3px 3px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    float: left;
-    border: 1px solid #BBB;
-    cursor: pointer;
 }
 .tlbiItem.over{
   background: #EEE;
@@ -88,10 +73,4 @@ body{
 }
 .dt_textValue input{
   width: 100px;
-}
-.tagApply{
-  border:1px solid #DDD;
-  float: left;
-  padding: 1px 2px;
-  margin: 2px;
 }

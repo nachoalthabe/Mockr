@@ -16,7 +16,7 @@ var Mockr = Class.extend({
        canvas: this._canvas,
        widget: this.ui,
        controller: this
-    }).do()
+    }).doit()
   },
   parseSchema: function(schema){
     opts = this.prepareOpts4Widget(schema[0].selector)

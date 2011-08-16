@@ -6,7 +6,7 @@ var Visitor = Class.extend({
     init: function(){
       $.extend(this,arguments[0])
     },
-    do: function(){
+    doit: function(){
       this.widget.evalFunc('visit',this);
     },
     visitGridBagLayout: function(elem){

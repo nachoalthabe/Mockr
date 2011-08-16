@@ -8,16 +8,15 @@ tagListBox = Class.extend({
     _widget: null,
     init: function(){
       this._dom = $('<div id="tagSelectionPanel">')
-      this._closeBtn = $('<div>').attr('id','tspClose').append($('<img>').attr({
-			  src: 'images/close.png',
-			  alt: 'Close tag list box'
-		  }).mousedown($.proxy(this.hide,this)))
+      this._btnContainer = $('<div class="tspBtns">').append(
+          $('<input type="button" value="Aceptar">').click($.proxy(this.hide,this))
+        )
 		  //Agrego el tag editor
       tagEditorContainer = $('<div>').attr('id','tspTagEditor').hide()
       this._tagEditor = new tagEditor(this,tagEditorContainer)
 		  //Creo un manejador de lista de tags...
 		  this._container = $('<div>').attr('id','tspContent')
-      this._dom.append(this._closeBtn,this._container,tagEditorContainer)
+      this._dom.append(this._container,tagEditorContainer,this._btnContainer)
       $(document.body).append(this._dom)
       //Seteando los accesors a widget
       this.__defineGetter__("widget",this.getWidget)
@@ -35,10 +34,10 @@ tagListBox = Class.extend({
        this._container.widget = widget;
     },
     showClose: function(){
-      this._closeBtn.show()
+      this._btnContainer.show()
     },
     hideClose: function(){
-      this._closeBtn.hide()
+      this._btnContainer.hide()
     },
     drawItems: function(){
         auxItems = new Array()
@@ -56,12 +55,27 @@ tagListBox = Class.extend({
         })
     },
     show: function(widget){
+        this.hide()
         this.widget = widget;
+        if(this._tags.length == 0){
+          return
+        }
         var offset = widget.dom.offset()
-        this._dom.css('top',offset.top+31)
-        this._dom.css('left',offset.left+widget.dom.width()+2)
+        $(document).width()
+        $(document).height()
+        var position = {
+          top: offset.top+31,
+          left: offset.left+widget.dom.width()+2
+        }
         this.drawItems()
         this._dom.show()
+        if($(document).height()<position.top+this._dom.height()){
+          position.top = position.top-this._dom.height()-31
+        }
+        if($(document).width()<position.left+this._dom.width()){
+          position.left = position.left-this._dom.width()
+        }
+        this._dom.css(position)
     },
     hide: function(event){
       if(this._tagEditor){

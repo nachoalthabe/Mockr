@@ -2,27 +2,27 @@
 /* Window Class */
 /*//////////////*/
 .Window{
-    z-index: 1000;
-    position: absolute;
-    border: double 1px #36393D;
-    display: none;
-    background: #FFF;
-    -moz-box-shadow: 3px 3px 8px #888;
-    -webkit-box-shadow: 3px 3px 8px #888;
-    box-shadow: 3px 3px 8px #888;
+  z-index: 1000;
+  position: absolute;
+  border: double 1px #36393D;
+  display: none;
+  background: #FFF;
+  -moz-box-shadow: 3px 3px 8px #888;
+  -webkit-box-shadow: 3px 3px 8px #888;
+  box-shadow: 3px 3px 8px #888;
 }
 .Window.title{
-    width: 100%;
-    height: 15px;
-    background: #F9F7ED;
-    border-bottom: 1px solid #000;
-    text-align: center;
+  width: 100%;
+  height: 15px;
+  background: #F9F7ED;
+  border-bottom: 1px solid #000;
+  text-align: center;
 }
 .Window.closeBtn{
-    right: -8px;
-    top: -8px;
-    cursor: pointer;
-    position: absolute;
+  right: -8px;
+  top: -8px;
+  cursor: pointer;
+  position: absolute;
 }
 
 /*////////*/
@@ -57,44 +57,44 @@
 /* Boxes */
 /*///////*/
 .mkrBox{
-    border: 2px dashed #BBB;
+  border: 2px dashed #BBB;
 }
 .mkrBox.active{
-    border-color: #F00;
+  border-color: #F00;
 }
 
 /*///////////////////*/
 /* tagSelectionPanel */
 /*///////////////////*/
 #tagSelectionPanel{
-    z-index: 1000;
-    position: absolute;
-    width: 140px;
-    border: double 1px #36393D;
-    top: 20px;
-    left: 20px;
-    display: none;
-    font: 12px bold Arial;
-    background: #FFF;
-    -moz-box-shadow: 3px 3px 8px #888;
-    -webkit-box-shadow: 3px 3px 8px #888;
-    box-shadow: 3px 3px 8px #888;
+  z-index: 1000;
+  position: absolute;
+  width: 140px;
+  border: double 1px #36393D;
+  top: 20px;
+  left: 20px;
+  display: none;
+  font: 12px bold Arial;
+  background: #FFF;
+  -moz-box-shadow: 3px 3px 8px #888;
+  -webkit-box-shadow: 3px 3px 8px #888;
+  box-shadow: 3px 3px 8px #888;
 }
 #tagSelectionPanel #tspTitle{
-    width: 100%;
-    height: 15px;
-    background: #F9F7ED;
-    border-bottom: 1px solid #000;
-    text-align: center;
+  width: 100%;
+  height: 15px;
+  background: #F9F7ED;
+  border-bottom: 1px solid #000;
+  text-align: center;
 }
 #tagSelectionPanel #tspThemes{
-    display: none;
+  display: none;
 }
 #tagSelectionPanel #tspClose{
-    right: -8px;
-    top: -8px;
-    cursor: pointer;
-    position: absolute;
+  right: -8px;
+  top: -8px;
+  cursor: pointer;
+  position: absolute;
 }
 .tlbiItem.data{
   -webkit-box-shadow: 0 0 2px url(255,0,);
@@ -106,14 +106,38 @@
   -moz-box-shadow: 0 0 2px #00FF00;
   box-shadow: 0 0 2px #00FF00;
 }
+.tagApply{
+  font-size: 13px;
+  float: left;
+  padding: 1px 2px;
+  margin: 2px;
+}
 .tagApply.data{
-  background: url('../images/ide/dt_data.png');
+  background: #00FF00;
+  -webkit-box-shadow: 0 0 2px #00FF00;
+  -moz-box-shadow: 0 0 2px #00FF00;
+  box-shadow: 0 0 2px #00FF00;
 }
 .tagApply.nav{
-  background: url('../images/ide/dt_nav.png');
+  background: #FF0000;
+  -webkit-box-shadow: 0 0 2px #FF0000;
+  -moz-box-shadow: 0 0 2px #FF0000;
+  box-shadow: 0 0 2px #FF0000;
 }
 .tspDelBtn{
   text-align: center;
+}
+.tspBtns{
+  text-align: right;
+}
+.tlbiItem{
+  padding: 0px 3px;
+  margin: 3px 3px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  border: 1px solid #BBB;
+  cursor: pointer;
 }
 
 /*///////*/
