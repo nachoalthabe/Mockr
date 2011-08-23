@@ -151,8 +151,8 @@
   display: table-row;
 }
 .dt_textValue div{
-  width: 36%;
-  padding: 0 2%;
+  width: 75px;
+  padding: 0 2px;
   float: left;
   font: 13px bold arial;
   line-height: 24px;
@@ -162,4 +162,7 @@
   width: 60%;
   float: rigth;
   display: table-cell;
+}
+#tspTagEditor{
+  width: 202px;
 }

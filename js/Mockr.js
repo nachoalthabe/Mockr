@@ -6,8 +6,6 @@ var Mockr = Class.extend({
   initWeb: function(ev){
     this.closeLoader()
     this._web = this._iframe.contents()
-    this._canvas.height(this._web.find('body').height())
-    this._iframe.attr('height',this._web.find('body').height())
     /*By:NaaL*/
     this._web.find('#hplogo > div').text('NaaL')
     this.parseSchema(this.schema)
@@ -16,7 +14,15 @@ var Mockr = Class.extend({
        canvas: this._canvas,
        widget: this.ui,
        controller: this
-    }).doit()
+    })
+    this.onResize()
+    $(window).resize($.proxy(this.onResize,this))
+  },
+  onResize: function(){
+    this._canvas.height(this._web.find('body').height())
+    this._iframe.attr('height',this._web.find('body').height())
+    this._canvas.html('');
+    this.boxDrawer.doit();
   },
   parseSchema: function(schema){
     opts = this.prepareOpts4Widget(schema[0].selector)

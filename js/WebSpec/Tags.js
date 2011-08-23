@@ -181,8 +181,8 @@ var Tag_select = Tags.extend({
   }
 });
 
-var Tag_sessionScope = Tags.extend({
-  _tagName: 'sessionScope',
+var Tag_sessionScoped = Tags.extend({
+  _tagName: 'sessionScoped',
   _tagSet: TagSet_Data,
   _params: null,
   _init: function(widget){
@@ -195,7 +195,7 @@ var Tag_delete = Tags.extend({
   _tagSet: TagSet_Nav,
   _params: null,
   _init: function(widget){
-    tthis._params.typeName= new TextValue(this,10,'typeName')
+    this._params.typeName= new TextValue(this,10,'typeName')
     this._params.defaultP = this._params.typeName
   }
 });
@@ -205,7 +205,7 @@ var Tag_save = Tags.extend({
   _tagSet: TagSet_Nav,
   _params: null,
   _init: function(widget){
-    tthis._params.typeName= new TextValue(this,10,'typeName')
+    this._params.typeName= new TextValue(this,10,'typeName')
     this._params.defaultP = this._params.typeName
   }
 });
@@ -215,7 +215,7 @@ var Tag_create = Tags.extend({
   _tagSet: TagSet_Data,
   _params: null,
   _init: function(widget){
-    tthis._params.typeName= new TextValue(this,10,'typeName')
+    this._params.typeName= new TextValue(this,10,'typeName')
     this._params.defaultP = this._params.typeName
   }
 });
@@ -225,7 +225,7 @@ var Tag_associate = Tags.extend({
   _tagSet: TagSet_Data,
   _params: null,
   _init: function(widget){
-    tthis._params.typeName= new TextValue(this,10,'typeName')
+    this._params.typeName= new TextValue(this,10,'typeName')
     this._params.defaultP = this._params.typeName
   }
 });
@@ -235,7 +235,7 @@ var Tag_dissociate = Tags.extend({
   _tagSet: TagSet_Data,
   _params: null,
   _init: function(widget){
-    tthis._params.typeName= new TextValue(this,10,'typeName')
+    this._params.typeName= new TextValue(this,10,'typeName')
     this._params.defaultP = this._params.typeName
   }
 });

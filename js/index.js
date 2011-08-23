@@ -24,6 +24,7 @@ yepnope([{
     'js/WebSpec/Boxes.js',
     'js/ide/tagListBox.js',
     'js/ide/tagEditBox.js',
+    'js/ide/SuiRemoteManager.js',
     'js/Mockr.js'
     ],
     //Init general
