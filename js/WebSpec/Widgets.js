@@ -73,12 +73,13 @@ var Widget = Class.extend({
     });
   },
   addTag: function(tag){
+    console.log('addTag')
     if(this.isValidTag(tag) && !this.hasTag(tag.getTagName())){
       this._tags.push(tag)
       tag.setWidget(this)
       //this.sendTagToServer(tag)
       tag.draw(this.box.tagsContainer.children('.tagsContainer'))
-      this.sendTagToServer(tag)
+      this.sendTagToServer(tag,false)
       return true;
     }else{
       return false;
@@ -94,19 +95,23 @@ var Widget = Class.extend({
     }
     var scope = this
     if(!remove){
-      suiRemoteManager.applyTags(tagObj,function(result){
-        if(!result.ok){
-          tag.destroy();
-          alert(message)
-        }
-      });
+    /*
+suiRemoteManager.applyTags(tagObj,function(result){
+  if(!result.ok){
+    tag.destroy();
+    alert(message)
+  }
+});
+      */
     }else{
-      suiRemoteManager.removeTags(tagObj,function(result){
-        if(!result.ok){
-          alert(message)
-        }
-      });
-    }
+  /*
+suiRemoteManager.removeTags(tagObj,function(result){
+  if(!result.ok){
+    alert(message)
+  }
+});
+      */
+  }
   },
   tagUpdated: function(tag){
     this.sendTagToServer(tag)
@@ -128,9 +133,12 @@ var Widget = Class.extend({
       var len=this._tags.length;
       for(var i=0; i<len; i++) {
         if(this._tags[i].getTagName() == tagName){
+          console.log('removeTag')
           var tag = this._tags[i]
           this._tags.splice(i,1);
           this.sendTagToServer(tag,true)
+          tag.destroy()
+          console.log('after destroy...',this)
           return true;
         }
       }

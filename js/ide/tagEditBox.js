@@ -31,11 +31,9 @@ var tagEditor = Class.extend({
     return true
   },
   delTag: function(){
-    if(!this._tag)
-      return false
-    var widget = this._tag.getWidget()
-    widget.removeTag(this._tag)
+    console.log('delTag')
     this._listItem.delTag()
+    console.log('Fin del delTag')
     this.hide()
   },
   getTag: function(){
@@ -49,6 +47,7 @@ var tagEditor = Class.extend({
       for(var param in params){
         params[param].persist()
       }
+      this._tag.updateParams()
     }
     this._dom.hide()
     this._parent.showClose()

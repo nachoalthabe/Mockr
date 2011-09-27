@@ -31,7 +31,6 @@ var TextValue = DataType.extend({
       return
     }
     this._value = value
-    this._tag.draw()
   },
   getValue: function(){
     return this._value

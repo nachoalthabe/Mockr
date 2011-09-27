@@ -108,6 +108,10 @@ var Tags = Class.extend({
       this._dom = $('<div>').addClass('tagApply ' + this._tagSet.name)
       this._widget.box.tagsContainer.append(this._dom)
     }
+    this.updateParams()
+    this._dom.show()
+  },
+  updateParams: function(){
     if(this._params == false){
       this._dom.text(this._tagName)
     }else{
@@ -125,8 +129,8 @@ var Tags = Class.extend({
     this._widget.tagUpdated(this)
   },
   destroy: function(){
-    this._dom.remove()
-    delete this
+    console.log('destroy',this._dom)
+    this._dom.hide()
   },
   getMainProperty: function(){
     return this._params.defaultP.getValue()
