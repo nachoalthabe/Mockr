@@ -94,24 +94,27 @@ var Widget = Class.extend({
       paramValues: tag.getParamsArray()
     }
     var scope = this
+    /**
+     *  Envio al servidor
+     */
     if(!remove){
-    /*
-suiRemoteManager.applyTags(tagObj,function(result){
-  if(!result.ok){
-    tag.destroy();
-    alert(message)
-  }
-});
-      */
+      if(suiRemoteManager){
+        suiRemoteManager.applyTags(tagObj,function(result){
+          if(!result.ok){
+            tag.destroy();
+            alert(message)
+          }
+        });
+      }
     }else{
-  /*
-suiRemoteManager.removeTags(tagObj,function(result){
-  if(!result.ok){
-    alert(message)
-  }
-});
-      */
-  }
+      if(suiRemoteManager){
+        suiRemoteManager.removeTags(tagObj,function(result){
+          if(!result.ok){
+            alert(message)
+          }
+        });
+      }
+    }
   },
   tagUpdated: function(tag){
     this.sendTagToServer(tag)
