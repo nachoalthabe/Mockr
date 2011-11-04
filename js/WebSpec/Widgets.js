@@ -93,6 +93,8 @@ var Widget = Class.extend({
       tagSet: tag._tagSet.name,
       paramValues: tag.getParamsArray()
     }
+    console.log('sendTagToServer',tagObj)
+    return
     var scope = this
     /**
      *  Envio al servidor

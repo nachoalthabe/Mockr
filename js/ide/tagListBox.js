@@ -132,11 +132,10 @@ tagListBoxItems = Class.extend({
         this._dom.addClass('apply')
       }
     else {
-      this._widget.addTag(this._tag)
       this._dom.addClass('apply')
       console.log('tagSelectionChange',this)
       this._tagEditor._parent.hideClose()
-      this._tagEditor.show(this,this._tag,elem)
+      this._tagEditor.show(this,this._tag,elem,this._widget)
     }
   },
   draw: function(container){

@@ -5,7 +5,7 @@ var tagEditor = Class.extend({
     this._dom.css('position','absolute')
     this._btnContainer = $('<div class="tspBtns">').append(
       $('<input type="button" value="Borrar" />').click($.proxy(this.delTag,this)),
-      $('<input type="button" value="Aceptar">').click($.proxy(this.hide,this))
+      $('<input type="button" value="Aceptar">').click($.proxy(this.addTag,this))
       )
     //Creo un manejador de lista de tags...
     this._container = $('<div>').addClass('tspContent')
@@ -17,9 +17,10 @@ var tagEditor = Class.extend({
     this.__defineGetter__("tag",this.getTag)
     this.__defineSetter__("tag",this.setTag)
   },
-  show: function(listItem,tag,dom){
+  show: function(listItem,tag,dom,widget){
     this._tag = tag
     this._listItem = listItem
+    this._widget = widget
     cPos = dom.position()
     //@TODO: Para mas adelante...
     //this._dom.css('top',this.fnPosition.top())
@@ -44,6 +45,7 @@ var tagEditor = Class.extend({
   },
   hide: function(event){
     if(this._tag){
+      params = this._tag.getParams()
       for(var param in params){
         params[param].persist()
       }
@@ -60,7 +62,7 @@ var tagEditor = Class.extend({
     }
   },
   addTag: function(){
+    this._widget.addTag(this._tag)
     this.hide()
-    this._parent._widget.addTag(this._tag)
   }
 })
